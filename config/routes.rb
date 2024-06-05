@@ -1,4 +1,12 @@
 Rails.application.routes.draw do
+ devise_for :users, skip: [:passwords], controllers: {
+   registrations: "public/registrations",
+  sessions: 'public/sessions'
+ }
+   devise_for :admins, skip: [:registrations, :passwords], controllers: {
+     sessions: "admin/sessions"
+   }
+ 
   namespace :public do
     get 'users/index'
     get 'users/show'
@@ -6,7 +14,6 @@ Rails.application.routes.draw do
     get 'users/confirm'
     get 'users/mypage'
   end
-   devise_for :users
    
   namespace :public do
     get 'chats/show'
