@@ -1,2 +1,36 @@
-<h1>Public::Posts#new</h1>
-<p>Find me in app/views/public/posts/new.html.erb</p>
+<div class="container">
+  <div class="row d-flex justify-content-center">
+    <div class="col-5">
+      <h3>新規投稿</h3>
+      
+       <%= form_with model: @post, url: posts_path(@post), method: :post do |f| %>
+         <table>
+          <tr>
+            <td class="align-top"><%= f.label :タイトル %></td>
+            <td><%= f.text_field :name, placeholder: 'タイトル名', class: "ml-4 mb-3 w-75" %></td>
+          </tr>
+          <tr>
+            <td class="align-top"><%= f.label :投稿内容 %></td>
+            <td><%= f.text_area :body, placeholder: 'ここに投稿内容を記述します', class: "ml-4 mb-3 w-75" %></td>
+          </tr>
+          <tr>
+            <td class="align-top"><%= f.label :投稿画像 %></td>
+            <td><%= f.file_field :image, accept: "image/*", class: "ml-4 mb-3 w-75" %></td>
+          </tr>
+          <tr>
+            <td class="align-top"><%= f.label :投稿ステータス %></td>
+            <td class="pr-auto">
+              <%= f.radio_button :is_active, :true, class: "ml-4" %>
+              <%= f.label :投稿 %>
+              <%= f.radio_button :is_active, :false, class: "ml-5" %>
+              <%= f.label :下書き %>
+            </td>
+          </tr>
+        </table>
+      <div class="col mx-auto">
+        <%= f.submit '新規投稿', class: "btn btn-success"%>
+      </div>
+        <% end %>
+    </div>
+  </div>
+</div>
