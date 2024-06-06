@@ -25,7 +25,7 @@
           <div class="row">
             <ul class="nav my-3">
               <li class="nav-item ml-4">
-                <%= link_to "マイページ", my_page_path, class:"btn btn-outline-light" %>
+                <%= link_to "マイページ", mypage_path, class:"btn btn-outline-light" %>
               </li>
               <li class="nav-item ml-4">
                 <%= link_to "新規投稿", new_post_path, class:"btn btn-outline-light" %>
@@ -34,7 +34,7 @@
                 <%= link_to "投稿一覧", posts_path, class:"btn btn-outline-light" %>
               </li>
               <li class="nav-item ml-4">
-                <%= link_to "ユーザー", user_path, class:"btn btn-outline-light" %>
+                <%= link_to "ユーザー", users_path, class:"btn btn-outline-light" %>
               </li>
               <li class="nav-item ml-4">
                 <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class:"btn btn-outline-light" %>
