@@ -1,62 +1,66 @@
 <header style="background-color: #F8C6BD;">
   <div class="container">
-    <%= link_to "egaoto",root_path %>
-    <div class="row d-flex justify-content-end mr-1">
-     <!-- 管理者がログインした時の表示 -->
-      <% if admin_signed_in? %>
-        <div class="row">
-          <ul class="nav my-3">
-            <li class="nav-item ml-4">
-            <%= link_to "投稿一覧", admin_posts_path, class:"btn btn-outline-light" %>
-            </li>
-            <li class="nav-item ml-4">
-              <%= link_to "ユーザー一覧", admin_users_path, class:"btn btn-outline-light" %>
-            </li>
-            <li class="nav-item ml-4">
-              <%= link_to "ジャンル一覧", admin_genres_path, class:"btn btn-outline-light" %>
-            </li>
-            <li class="nav-item ml-4">
-              <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class:"btn btn-outline-light" %>
-            </li>
-          </ul>
-        </div>
-        <!-- userがログインした時の表示 -->
-        <% elsif user_signed_in? %>
+    <div class="row d-flex">
+      <%= link_to root_path do %>
+        <%= image_tag "logo", size: "250x110" %>
+      <% end %>
+      <div class="col d-flex justify-content-end mr-1 my-auto">
+       <!-- 管理者がログインした時の表示 -->
+        <% if admin_signed_in? %>
           <div class="row">
             <ul class="nav my-3">
               <li class="nav-item ml-4">
-                <%= link_to "マイページ", mypage_path, class:"btn btn-outline-light" %>
+              <%= link_to "投稿一覧", admin_posts_path, class:"btn btn-outline-light" %>
               </li>
               <li class="nav-item ml-4">
-                <%= link_to "新規投稿", new_post_path, class:"btn btn-outline-light" %>
+                <%= link_to "ユーザー一覧", admin_users_path, class:"btn btn-outline-light" %>
               </li>
               <li class="nav-item ml-4">
-                <%= link_to "投稿一覧", posts_path, class:"btn btn-outline-light" %>
+                <%= link_to "ジャンル一覧", admin_genres_path, class:"btn btn-outline-light" %>
               </li>
               <li class="nav-item ml-4">
-                <%= link_to "ユーザー", users_path, class:"btn btn-outline-light" %>
-              </li>
-              <li class="nav-item ml-4">
-                <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class:"btn btn-outline-light" %>
+                <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class:"btn btn-outline-light" %>
               </li>
             </ul>
           </div>
-          <!-- ログインしていない時の表示 -->
-          <% else %>
+          <!-- userがログインした時の表示 -->
+          <% elsif user_signed_in? %>
             <div class="row">
               <ul class="nav my-3">
                 <li class="nav-item ml-4">
-                  <%= link_to "About", about_path, class:"btn btn-outline-light" %>
+                  <%= link_to "マイページ", mypage_path, class:"btn btn-outline-light" %>
                 </li>
                 <li class="nav-item ml-4">
-                  <%= link_to "新規登録", new_user_registration_path, class:"btn btn-outline-light" %>
+                  <%= link_to "新規投稿", new_post_path, class:"btn btn-outline-light" %>
                 </li>
                 <li class="nav-item ml-4">
-                  <%= link_to "ログイン", user_session_path, class:"btn btn-outline-light" %>
+                  <%= link_to "投稿一覧", posts_path, class:"btn btn-outline-light" %>
+                </li>
+                <li class="nav-item ml-4">
+                  <%= link_to "ユーザー", users_path, class:"btn btn-outline-light" %>
+                </li>
+                <li class="nav-item ml-4">
+                  <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class:"btn btn-outline-light" %>
                 </li>
               </ul>
             </div>
-          <% end %>
+            <!-- ログインしていない時の表示 -->
+            <% else %>
+              <div class="row">
+                <ul class="nav my-3">
+                  <li class="nav-item ml-4">
+                    <%= link_to "About", about_path, class:"btn btn-outline-light" %>
+                  </li>
+                  <li class="nav-item ml-4">
+                    <%= link_to "新規登録", new_user_registration_path, class:"btn btn-outline-light" %>
+                  </li>
+                  <li class="nav-item ml-4">
+                    <%= link_to "ログイン", user_session_path, class:"btn btn-outline-light" %>
+                  </li>
+                </ul>
+              </div>
+            <% end %>
+      </div>
     </div>
   </div>
 </header>

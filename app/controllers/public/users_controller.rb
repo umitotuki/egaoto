@@ -14,5 +14,6 @@ class Public::UsersController < ApplicationController
   end
 
   def mypage
+    @customer = current_user
   end
 end
