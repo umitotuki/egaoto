@@ -1,2 +1,34 @@
-<h1>Public::Posts#edit</h1>
-<p>Find me in app/views/public/posts/edit.html.erb</p>
+<div class="container">
+  <div class="row d-flex justify-content-center">
+     <div class="col-5">
+        <h3>投稿編集</h3>
+        
+    　　 <%= form_with model: @post, url: post_path(@post.id), method: :patch do |f| %>
+    　　 <table>
+            <tr>
+              <td class="align-top"><%= f.label :タイトル %></td>
+              <td><%= f.text_field :name, placeholder: 'タイトル名', class: "ml-4 mb-3 w-75" %></td>
+            </tr>
+            <tr>
+              <td class="align-top"><%= f.label :商品説明 %></td>
+              <td><%= f.text_area :body, placeholder: 'ここに説明文を記述します', class: "ml-4 mb-3 w-75" %></td>
+            </tr>
+            <tr>
+              <td class="align-top"><%= f.label ：投稿画像 %></td>
+              <td><%= f.file_field :image, accept: "image/*", class: "ml-4 mb-3 w-75" %></td>
+            </tr>
+            <tr>
+              <td class="align-top"><%= f.label :投稿ステータス %></td>
+              <td class="pr-auto">
+                <%= f.radio_button :is_draft, :true %>
+                <%= f.label :下書き %>
+                <%= f.radio_button :is_draft, :false %>
+                <%= f.label :投稿 %>
+              </td>
+            </tr>
+         </table>
+           <%= f.submit '変更を保存', class: "btn btn-success" %>
+         <% end %>
+     </div>
+  </div>
+</div>

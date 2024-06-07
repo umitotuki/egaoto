@@ -78,7 +78,7 @@ ActiveRecord::Schema.define(version: 2024_06_05_110654) do
   create_table "posts", force: :cascade do |t|
     t.string "title", null: false
     t.text "body", null: false
-    t.boolean "is_active", default: true, null: false
+    t.boolean "is_draft", default: true, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

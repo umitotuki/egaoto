@@ -1,2 +1,32 @@
-<h1>Public::Posts#show</h1>
-<p>Find me in app/views/public/posts/show.html.erb</p>
+<div class="container">
+  <div class="row d-flex justify-content-center">
+    <div class="col-5">
+      <h3>投稿詳細</h3>
+        
+        <table>
+        <tr>
+          <td class="col-4 align-top">タイトル</td>
+          <td><%= @post.title %></td>
+        </tr>
+        <tr>
+          <td class="col-4 align-top">投稿内容</td>
+          <td><%= @post.body %></td>
+        </tr>
+        <tr>
+          <td class="col-4 align-top">ジャンル</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>投稿ステータス</td>
+          <% if @post.is_draft? && @post.user == current_user %>
+            <td><b>下書き</b></td>
+          <% else %>
+            <td><b>投稿</b></td>
+          <% end %>
+        </tr>
+      </table>
+      <%= image_tag @post.get_image(200, 200) %>
+      <%= link_to '編集', edit_post_path(@post.id), class: "btn btn-success" %>
+    </div>
+  </div>
+</div>
