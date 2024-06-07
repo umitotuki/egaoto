@@ -1,0 +1,24 @@
+<div class="container">
+  <div class="row d-flex jstify-content-center">
+    <div class="col-5">
+      <h3>マイページ</h3>
+      
+      <h5>名前：</h5>
+      <p><%= @user.name %></p>
+        
+      <h5>生年月日：</h5>
+    　<p><%= @user.birth %></p>
+    　
+    　<h5>位置情報：</h5>
+    　<p><%= @user.location %></p>
+    　
+    　<h5>自己紹介</h5>
+    　<p><%= @user.introduction %></p>
+    　
+    　<h5>性別</h5>
+    　<p><%= @user.is_active %></p>
+    　
+      <%= link_to "編集", edit_user_path, class:"btn btn-success" %>
+    </div>
+  </div>
+</div>
