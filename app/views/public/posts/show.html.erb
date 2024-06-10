@@ -1,32 +1,35 @@
-<div class="container">
-  <div class="row d-flex justify-content-center">
-    <div class="col-5">
+<div class="col-4 mx-auto" style="background-color: #FFFFFF;">
+  <div class="row">
       <h3>投稿詳細</h3>
-        
-        <table>
-        <tr>
-          <td class="col-4 align-top">タイトル</td>
-          <td><%= @post.title %></td>
-        </tr>
-        <tr>
-          <td class="col-4 align-top">投稿内容</td>
-          <td><%= @post.body %></td>
-        </tr>
-        <tr>
-          <td class="col-4 align-top">ジャンル</td>
-          <td></td>
-        </tr>
-        <tr>
-          <td>投稿ステータス</td>
-          <% if @post.is_draft? && @post.user == current_user %>
-            <td><b>下書き</b></td>
-          <% else %>
-            <td><b>投稿</b></td>
-          <% end %>
-        </tr>
-      </table>
-      <%= image_tag @post.get_image(200, 200) %>
+  </div>
+    <table>
+      <tr>
+        <td class="col-4 align-top">タイトル</td>
+        <td><%= @post.title %></td>
+      </tr>
+      <tr>
+        <td class="col-4 align-top">投稿内容</td>
+        <td><%= @post.body %></td>
+      </tr>
+      <tr>
+        <td class="col-4 align-top">ジャンル</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>投稿ステータス</td>
+        <% if @post.is_draft? && @post.user == current_user %>
+          <td><b>下書き</b></td>
+        <% else %>
+          <td><b>投稿</b></td>
+        <% end %>
+      </tr>
+    </table>
+    <%= image_tag @post.get_image(200, 200) %>
+    <div class="row">
       <%= link_to '編集', edit_post_path(@post.id), class: "btn btn-success" %>
+      <% if @post.user == current_user %>
+      <%= link_to "削除", post_path(@post), method: :delete, class: "btn btn-danger" %>
+      <% end %>
     </div>
   </div>
 </div>

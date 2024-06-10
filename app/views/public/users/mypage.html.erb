@@ -1,5 +1,5 @@
-<div class="container">
-  <div class="row d-flex jstify-content-center">
+ <div class="col-4 mx-auto" style="background-color: #FFFFFF;">
+  <div class="row">
     <div class="col-5">
       <h3>マイページ</h3>
       
@@ -16,7 +16,7 @@
     　<p><%= @user.introduction %></p>
     　
     　<h5>性別</h5>
-    　<p><%= @user.is_gender_status %></p>
+    　<p><%= @user.is_active %></p>
     　
       <%= link_to "編集", edit_user_path(@user.id), class:"btn btn-success" %>
     </div>
