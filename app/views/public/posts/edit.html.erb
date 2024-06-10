@@ -32,3 +32,26 @@
      </div>
   </div>
 </div>
+
+<div class="col-4 mx-auto" style="background-color: #FFFFFF;">
+  <div class="row">
+      <h3>新規投稿</h3>
+  </diV>
+    <div class="row">
+     <%= form_with model: @post, url: posts_path(@post), method: :post do |f| %>
+       <%= f.text_field :title, placeholder: 'タイトル名', class:"ml-4 mb-3 w-75" %>
+       <%= f.text_area :body, placeholder: '投稿内容', class:"ml-4 mb-3 w-75" %>
+       <%= f.file_field :image, accept: "image/*", class:"align-top ml-4 mb-3" %>
+        <div class="pr-auto">
+          <%= f.radio_button :is_draft, :true %>
+          <%= f.label :下書き %>
+          <%= f.radio_button :is_draft, :false %>
+          <%= f.label :投稿 %>
+        </div>
+        <div class="col mx-auto">
+          <%= f.submit '新規投稿', class: "btn btn-success" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
