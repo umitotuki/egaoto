@@ -53,12 +53,16 @@ ActiveRecord::Schema.define(version: 2024_06_05_110654) do
   end
 
   create_table "chats", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "room_id", null: false
     t.text "message", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "favorites", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "post_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -70,6 +74,8 @@ ActiveRecord::Schema.define(version: 2024_06_05_110654) do
   end
 
   create_table "post_commentents", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "post_id", null: false
     t.text "comment", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -77,6 +83,7 @@ ActiveRecord::Schema.define(version: 2024_06_05_110654) do
 
   create_table "posts", force: :cascade do |t|
     t.integer "user_id", null: false
+    t.integer "genre_id", null: false
     t.string "title", null: false
     t.text "body", null: false
     t.boolean "is_draft", default: true, null: false
@@ -97,6 +104,8 @@ ActiveRecord::Schema.define(version: 2024_06_05_110654) do
   end
 
   create_table "user_rooms", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "room_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -111,7 +120,7 @@ ActiveRecord::Schema.define(version: 2024_06_05_110654) do
     t.integer "birth", null: false
     t.string "location"
     t.text "introduction"
-    t.string "is_gender_status"
+    t.string "is_active"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["email"], name: "index_users_on_email", unique: true

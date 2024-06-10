@@ -35,7 +35,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[6.1]
       t.integer :birth, null: false
       t.string :location
       t.text :introduction
-      t.string :is_gender_status
+      t.string :is_active
 
       t.timestamps null: false
     end
