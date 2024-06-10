@@ -28,6 +28,7 @@
         <tr>
           <th></th>
           <th>投稿一覧</th>
+          <th></th>
         </tr>
       </thead>
       <tbody>
@@ -42,6 +43,12 @@
             <%= link_to post_path(post.user.id) do %>
               <%= post.title %>
               <%= post.body %>
+            <% end %>
+          </td>
+          <td>
+            <%= link_to '編集', edit_post_path(@post.id), class: "btn btn-success" %>
+            <% if @post.user == current_user %>
+              <%= link_to "削除", post_path(@post), method: :delete, class: "btn btn-danger" %>
             <% end %>
           </td>
         </tr>
