@@ -30,7 +30,7 @@ class Public::PostsController < ApplicationController
   end
   
   def update
-    @poat = Post.find(params[:id])
+    @post = Post.find(params[:id])
     if @post.update(post_params)
       flash[:notice] = "投稿内容を変更しました。"
       redirect_to post_path(@post)
