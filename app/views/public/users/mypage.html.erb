@@ -3,17 +3,20 @@
     <h3 class="mt-3">マイページ</h3>
   </div>
   <div class="row">
-    <div class="col-6 ml-2">
+    <div class="col-6 mt-3">
       <%= image_tag @user.get_image, class:"rounded-circle mx-auto d-block" %>
     </div>
-    <!--名前直す-->
-    <div class="col-5">
+    <div class="col-5 mt-3">
       <h5><%= @user.name %></h5>
+        <% if @user.is_active? %>
+          <td>女性</td>
+        <% else %>
+          <td>男性</td>
+        <% end %>
     </div>
   </div>
-  <div class="row ml-3">
-    <p><%= @user.is_active %><br/>
-      生年月日：<%= @user.birth %><br/>
+  <div class="row ml-3 mt-3">
+    <p>生年月日：<%= @user.birth %><br/>
       位置情報：<%= @user.location %></p>
   </div>
   <div class="row ml-3">
@@ -49,9 +52,13 @@
             <% end %>
           </td>
           <td>
-            <%= link_to '編集', edit_post_path(post.user.id), class: "btn btn-success" %>
             <% if post.user == current_user %>
-              <%= link_to "削除", post_path(post.user.id), method: :delete, class: "btn btn-danger" %>
+              <%= link_to edit_post_path(post.id) do %>
+               <i class="fa-solid fa-pen-to-square custom-border"></i>
+              <% end %>
+              <%= link_to post_path(post.id), method: :delete do %>
+                <i class="fa-solid fa-trash-can custom-border"></i>
+              <% end %>
             <% end %>
           </td>
         </tr>
