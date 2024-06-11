@@ -9,8 +9,5 @@
          <%= post.body %>
        <% end %>
      <% end %>
-     <% if @post.user == current_user %>
-      <%= link_to "削除", post_path(@post), method: :delete, class: "btn btn-danger" %>
-     <% end %>
   </div>
 </div>

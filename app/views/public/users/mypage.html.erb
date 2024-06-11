@@ -4,7 +4,7 @@
   </div>
   <div class="row">
     <div class="col">
-      <%= image_tag @user.get_profile_image %>
+      <%= image_tag @user.get_image %>
     </div>
     <div class="col">
       <p>名前：<%= @user.name %></p>
@@ -13,11 +13,11 @@
   <div class="row">
     <p><%= @user.is_active %></p>
     <p>生年月日：<%= @user.birth %></p>
-  　<p>位置情報：<%= @user.location %></p>
+    <p>位置情報：<%= @user.location %></p>
   </div>
   <div class="row">
-  　<h6>自己紹介</h6>
-  　<p><%= @user.introduction %></p>
+    <h6>自己紹介</h6>
+    <p><%= @user.introduction %></p>
   </div>
   <div class="row">
     <%= link_to "編集", edit_user_path(@user.id), class:"btn btn-success" %>
@@ -36,7 +36,7 @@
         <tr>
           <td>
             <%= link_to user_path(post.user.id) do %>
-              <%= image_tag post.user.get_profile_image %>
+              <%= image_tag post.user.get_image %>
             <% end %>
           </td>
           <td>
@@ -46,9 +46,9 @@
             <% end %>
           </td>
           <td>
-            <%= link_to '編集', edit_post_path(@post.id), class: "btn btn-success" %>
-            <% if @post.user == current_user %>
-              <%= link_to "削除", post_path(@post), method: :delete, class: "btn btn-danger" %>
+            <%= link_to '編集', edit_post_path(post.user.id), class: "btn btn-success" %>
+            <% if post.user == current_user %>
+              <%= link_to "削除", post_path(post.user.id), method: :delete, class: "btn btn-danger" %>
             <% end %>
           </td>
         </tr>
