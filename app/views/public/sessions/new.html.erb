@@ -1,27 +1,21 @@
-<div class="container">
+<div class="col-4 mx-auto my-3" style="background-color: #FFFFFF;">
   <div class="row d-frex justify-content-center">
-    <div class="col-5">
-      <h2 class="section-title">ログイン</h2>
-      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-        <table class="table table-borderless">
-          <tr>
-            <td><%= f.label :メールアドレス %></td>
-            <td><%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", placeholder: "sample@example.com" %></td>
-          </tr>
-          <tr>
-            <td><%= f.label :パスワード %></td>
-            <td><%= f.password_field :password, autocomplete: "current-password", class: "form-control" %></td>
-          </tr>
-          <tr>
-            <td></td>
-            <td>
-              <%= f.submit "ログイン", class:"btn btn-primary px-5"  %>
-            </td>
-          </tr>
-        </table>
-      <% end %>
-      <p>登録がお済みでない方<br/>
-          <%= link_to "こちら", new_user_registration_path %>　から新規登録ができます。</p
-    </div>
+    <h2 class="section-title mt-3 text-primary">ログイン</h2>
   </div>
+  
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+    <div class="col mx-auto">
+      <h5 class="my-2">メールアドレス</h5> 
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", placeholder: "sample@example.com" %>
+      <h5 class="my-2">パスワード</h5>
+        <%= f.password_field :password, autocomplete: "current-password", class: "form-control" %>
+    </div>
+    <div class="row justify-content-center">
+      <%= f.submit "ログイン", class:"btn btn-primary my-4"%>
+    </div>
+    <% end %>
+    <div class="row mb-4 ml-4">
+      <p>登録がお済みでない方<br/>
+        <%= link_to "こちら", new_user_registration_path %>　から新規登録ができます。</p>
+    </div>
 </div>

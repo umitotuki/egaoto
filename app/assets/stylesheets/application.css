@@ -41,3 +41,8 @@ footer {
   bottom: 0;
   width: 100%;
 }
+
+.custom-border {
+  border-color: red;
+  border-width: 2px;
+}
