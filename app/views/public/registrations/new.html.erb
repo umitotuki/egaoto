@@ -1,39 +1,28 @@
-<div class="container">
-  <div class="row d-flex justify-content-center">
-    <div class="col-5 sm-4">
-      <h2 class="section-title">新規登録</h2>
-      
-      <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-      <%= render "public/shared/error_messages", resource: resource %>
-      <table class="table table-borderless">
-        <tr>
-          <td>名前</td>
-          <td><%= f.text_field :name, class:"form-control", placeholder: "名前" %></td>
-        </tr>
-        <tr>
-          <td>生年月日</td>
-          <td><%= f.text_field :birth, class:"form-control", placeholder: "19901001" %></td>
-        </tr>
-        <tr>
-          <td>メールアドレス</td>
-          <td><%= f.email_field :email, autofocus: true, autocomplete: "email", class:"form-control", placeholder: "sample@example.com" %></td>
-        </tr>
-        <tr>
-          <td>パスワード(<%= @minimum_password_length %>文字以上)</td>
-          <td><%= f.password_field :password, autocomplete: "new-password", class:"form-control" %></td>
-        </tr>
-        <tr>
-          <td>パスワード(確認用)</td>
-          <td><%= f.password_field :password_confirmation, autocomplete: "new-password", class:"form-control" %></td>
-        </tr>
-        <tr>
-          <td></td>
-          <td><%= f.submit "新規会員登録" , class: "btn btn-success px-5"%></td>
-        </tr>
-      </table>
-      <% end %>
-      <p>既に登録済みの方<br/>
-          <%= link_to "こちら", new_user_session_path %>　からログインしてください。</p>
-    </div>
+<div class="col-4 mx-auto my-3" style="background-color: #FFFFFF;">
+  <div class="row justify-content-center">
+    <h2 class="section-title mt-3">新規登録</h2>
   </div>
+  
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+    <%= render "public/shared/error_messages", resource: resource %>
+    <div class="col mx-auto">
+      <h5 class="my-2">名前</h5>
+        <%= f.text_field :name, class:"form-control", placeholder: "名前" %>
+      <h5 class="my-2">生年月日</h5>
+        <%= f.text_field :birth, class:"form-control", placeholder: "1990年4月20日" %>
+      <h5 class="my-2">メールアドレス</h5>
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"form-control", placeholder: "sample@example.com" %>
+      <h5 class="my-2">パスワード(<%= @minimum_password_length %>文字以上)</h5>
+        <%= f.password_field :password, autocomplete: "new-password", class:"form-control" %>
+      <h5 class="my-2">パスワード(確認用)</h5>
+        <%= f.password_field :password_confirmation, autocomplete: "new-password", class:"form-control" %>
+    </div>
+    <div class="row justify-content-center">
+      <%= f.submit "新規会員登録" , class: "btn btn-success my-4" %>
+    </div>
+    <% end %>
+    <p>既に登録済みの方<br/>
+        <%= link_to "こちら", new_user_session_path %>　からログインしてください。</p>
+  </div>
+</div>
 </div>

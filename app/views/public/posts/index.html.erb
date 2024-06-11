@@ -1,13 +1,17 @@
 <div class="col-4 mx-auto">
-  <div class="row">
-    <h3>投稿一覧</h3>
-  </div>
-  <div class="row shadow" style="background-color: #FFFFFF;">
+  <div class="row mt-3">
      <% @posts.each do |post| %>
+     <div class="row shadow" style="background-color: #FFFFFF;">
        <%= link_to post_path(post.id) do %>
-         <%= post.title %>
-         <%= post.body %>
+         <div class="col">
+           <%= image_tag @user.get_image, class:"rounded-circle mx-auto d-block" %>
+         </div>
+         <div class="col">
+           <%= post.title %>
+           <%= post.body %>
+         </div>
        <% end %>
-     <% end %>
+       </div>
+      <% end %>
   </div>
 </div>

@@ -16,11 +16,11 @@
         <td></td>
       </tr>
       <tr>
-        <td>投稿ステータス</td>
+        <td></td>
         <% if @post.is_draft? && @post.user == current_user %>
-          <td><b>下書き</b></td>
+          <td>下書き</td>
         <% else %>
-          <td><b>投稿</b></td>
+          <td>投稿</td>
         <% end %>
       </tr>
     </table>
