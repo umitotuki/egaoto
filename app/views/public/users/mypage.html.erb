@@ -1,24 +1,62 @@
- <div class="col-4 mx-auto" style="background-color: #FFFFFF;">
+<div class="col-4 mx-auto my-3" style="background-color: #FFFFFF;">
+  <div class="row d-frex justify-content-center">
+    <h3 class="mt-3">マイページ</h3>
+  </div>
   <div class="row">
-    <div class="col-5">
-      <h3>マイページ</h3>
-      
-      <h5>名前：</h5>
-      <p><%= @user.name %></p>
-        
-      <h5>生年月日：</h5>
-    　<p><%= @user.birth %></p>
-    　
-    　<h5>位置情報：</h5>
-    　<p><%= @user.location %></p>
-    　
-    　<h5>自己紹介</h5>
-    　<p><%= @user.introduction %></p>
-    　
-    　<h5>性別</h5>
-    　<p><%= @user.is_active %></p>
-    　
-      <%= link_to "編集", edit_user_path(@user.id), class:"btn btn-success" %>
+    <div class="col-6 ml-2">
+      <%= image_tag @user.get_image, class:"rounded-circle mx-auto d-block" %>
     </div>
+    <!--名前直す-->
+    <div class="col-5">
+      <h5><%= @user.name %></h5>
+    </div>
+  </div>
+  <div class="row ml-3">
+    <p><%= @user.is_active %><br/>
+      生年月日：<%= @user.birth %><br/>
+      位置情報：<%= @user.location %></p>
+  </div>
+  <div class="row ml-3">
+    <h6>自己紹介</h6>
+    <p><%= @user.introduction %></p>
+  </div>
+  <div class="row mr-2 d-frex justify-content-end">
+    <%= link_to edit_user_path(@user.id) do %>
+      <i class="fa-solid fa-user-gear rounded p-2 custom-border"></i>
+    <% end %>
+  </div>
+  <div class="row mt-2 mx-auto">
+    <table class="table">
+      <thead>
+        <tr>
+          <th></th>
+          <th>投稿一覧</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+      <% @posts.each do |post| %>
+        <tr>
+          <td>
+            <%= link_to user_path(post.user.id) do %>
+              <%= image_tag post.user.get_image %>
+            <% end %>
+          </td>
+          <td>
+            <%= link_to post_path(post.user.id) do %>
+              <%= post.title %>
+              <%= post.body %>
+            <% end %>
+          </td>
+          <td>
+            <%= link_to '編集', edit_post_path(post.user.id), class: "btn btn-success" %>
+            <% if post.user == current_user %>
+              <%= link_to "削除", post_path(post.user.id), method: :delete, class: "btn btn-danger" %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
   </div>
 </div>
