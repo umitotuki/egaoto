@@ -17,9 +17,9 @@
       <% end %>
     </div>
     <div class="col">
-      <%= link_to '編集', edit_post_path(@post.id), class: "btn btn-success mx-3 my-2" %>
       <% if @post.user == current_user %>
-      <%= link_to "削除", post_path(@post), method: :delete, class: "btn btn-danger mr-3 my-2" %>
+        <%= link_to '編集', edit_post_path(@post.id), class: "btn btn-success mx-3 my-2" %>
+        <%= link_to "削除", post_path(@post), method: :delete, class: "btn btn-danger mr-3 my-2" %>
       <% end %>
   </div>
 </div>
