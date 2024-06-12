@@ -15,6 +15,7 @@ class Public::UsersController < ApplicationController
   end
 
   def confirm
+    @user = current_user
   end
 
   def mypage
@@ -31,6 +32,12 @@ class Public::UsersController < ApplicationController
       flash.now[:alert] = "更新できませんでした。"
       render :edit
     end
+  end
+  
+  def destroy
+    user = User.find(params[:id])
+    user.destroy
+    redirect_to mypage_path
   end
   
   private
