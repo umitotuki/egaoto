@@ -54,7 +54,7 @@
             <% if post.user == current_user %>
               <%= link_to edit_post_path(post.id),style:"text-decoration: none;" do %>
                <i class="fa-solid fa-pen-to-square p-2 custom-border"></i>
-              <% end %> 
+              <% end %>
               <%= link_to post_path(post.id), method: :delete,style:"text-decoration: none;" do %>
                 <i class="fa-solid fa-trash-can p-2 custom-border"></i>
               <% end %>
