@@ -1,17 +1,17 @@
 <div class="col-4 mx-auto">
   <div class="row mt-3">
-     <div class="row shadow" style="background-color: #FFFFFF;">
+     <div class="row" style="background-color: #FFFFFF;">
      <% @posts.each do |post| %>
-         <div class="col-6 mb-3">
+         <div class="col-4 my-3">
            <%= image_tag post.user.get_image, class:"rounded-circle mx-auto d-block" %>
          </div>
-         <div class="col-5 mb-3">
+         <div class="col-7 my-3">
         <%= link_to post_path(post.id) do %>
         <div>
-           <%= post.title %>
+           <h5 style="color: #000;"><%= post.title %></h5>
         </div>
         <div>
-           <%= post.body %>
+           <p style="color: #000;"><%= post.body %></p>
         </div>
          <% end %>
         </div>

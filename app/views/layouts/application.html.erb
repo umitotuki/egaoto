@@ -14,14 +14,12 @@
   <body style="background-color: #FFFFCC;">
     <div class="wrapper">
       <%= render partial: 'layouts/header' %>
-        <main class="page-body" style="padding-bottom: 100px;">
-        <div class="container">
-          <div class="row">
+        <main class="page-body" style="padding-bottom: 80px;">
+          <div class="container">
             <% flash.each do |message_type, message| %>
-            <div class="col flash-message <%= message_type %>"><%= message %></div>
+            <div class="col-6 mt-3 mx-auto flash-message <%= message_type %> "><%= message %></div>
             <% end %>
           </div>
-        </div>
         <%= yield %>
        </main>
       <%= render partial: 'layouts/footer' %>

@@ -1,20 +1,13 @@
-<footer class="page-footer" style="background-color: #F8C6BD; height: 100px;">
+<footer class="page-footer" style="background-color: #F8C6BD; height: 60px;">
   <div class="container">
     <div class="row d-flex justify-content-center">
-      <% user_signed_in? %>
+      <% if user_signed_in? %>
       <ul class="nav my-3">
         <li class="nav-item ml-4" style="display:flex; justify-content: center; align-items: center;">
           <%= link_to mypage_path, style: "display:flex; align-items: center; flex-direction: column; text-decoration: none;" do %>
           <i class="fa-solid fa-circle-user" style="color: #ffffff;"></i>
           <p style="font-size: 10px; color: white">マイページ</p>
           <% end %>
-        </li>
-        <li class="nav-item ml-4" style="display:flex; justify-content: center; align-items: center;">
-          <%= link_to new_post_path, style: "display:flex; align-items: center; flex-direction: column; text-decoration: none;" do %>
-          <i class="fa-solid fa-plus" style="color: #ffffff;"></i>
-          <p style="font-size: 10px; color: white">新規</p>
-          <% end %>
-          <p></p>
         </li>
         <li class="nav-item ml-4" style="display:flex; justify-content: center; align-items: center;">
           <%= link_to posts_path, style: "display:flex; align-items: center; flex-direction: column; text-decoration: none;" do %>
@@ -28,7 +21,14 @@
           <p style="font-size: 10px; color: white">ユーザー</p>
           <% end %>
         </li>
+        <li class="nav-item ml-4" style="display:flex; justify-content: center; align-items: center;">
+          <%= link_to new_post_path, style: "display:flex; align-items: center; flex-direction: column; text-decoration: none;" do %>
+          <i class="fa-solid fa-plus" style="color: #ffffff;"></i>
+          <p style="font-size: 10px; color: white">新規投稿</p>
+          <% end %>
+        </li>
       </ul>
+      <% end %>
     </div>
   </div>
 </footer>

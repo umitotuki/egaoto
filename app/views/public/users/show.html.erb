@@ -1,11 +1,68 @@
-<div class="col-4 mx-auto" style="background-color: #FFFFFF;">
+<div class="col-4 mx-auto my-3" style="background-color: #FFFFFF;">
   <div class="row">
-    <div class="col">
-      <%= image_tag @user.get_image %>
+    <div class="col-6 mt-3">
+      <%= image_tag @user.get_image, class:"rounded-circle mx-auto d-block" %>
     </div>
-    <div class="col">
-      <h3><%= @user.name %></h3>
+    <div class="col-5 mt-3">
+      <h5><%= @user.name %></h5>
+        <% if @user.is_active? %>
+          <td>女性</td>
+        <% else %>
+          <td>男性</td>
+        <% end %>
     </div>
-    
+  </div>
+  <div class="row ml-3 mt-3">
+    <p>生年月日：<%= @user.birth %><br/>
+      位置情報：<%= @user.location %></p>
+  </div>
+  <div class="row ml-3">
+    <h6>自己紹介</h6>
+    <p><%= @user.introduction %></p>
+  </div>
+  <div class="row mr-2 d-frex justify-content-end">
+    <% if @user == current_user %>
+      <%= link_to edit_user_path(@user.id) do %>
+        <i class="fa-solid fa-user-gear rounded p-2 custom-border"></i>
+      <% end %>
+    <% end %>
+  </div>
+  <div class="row mt-2 mx-auto">
+    <table class="table">
+      <thead>
+        <tr>
+          <th></th>
+          <th>投稿一覧</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+      <% @posts.each do |post| %>
+        <tr>
+          <td>
+            <%= link_to user_path(post.user.id) do %>
+              <%= image_tag post.user.get_image, class:"rounded-circle mx-auto d-block" %>
+            <% end %>
+          </td>
+          <td>
+            <%= link_to post_path(post.user.id),style:"text-decoration: none;" do %>
+              <%= post.title %>
+              <%= post.body %>
+            <% end %>
+          </td>
+          <td>
+            <% if post.user == current_user %>
+              <%= link_to edit_post_path(post.id),style:"text-decoration: none;" do %>
+               <i class="fa-solid fa-pen-to-square p-2 custom-border"></i>
+              <% end %>
+              <%= link_to post_path(post.id), method: :delete,style:"text-decoration: none;" do %>
+                <i class="fa-solid fa-trash-can p-2 custom-border"></i>
+              <% end %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
   </div>
 </div>

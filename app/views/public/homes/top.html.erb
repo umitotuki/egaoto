@@ -1,13 +1,16 @@
-<div class="container">
+<div class="col-4 mx-auto my-3" style="background-color: #FFFFFF;">
   <div class="row">
-    <div class="col-6 sm-6 mx-auto my-3">
-      <h1>Public::Homes#top</h1>
+    <div class="col-11 mx-auto my-3">
+      <h3 class="text-center">似た境遇のひとり親家庭同士で<br/>
+      繋がることができるSNS</h3>
+      <p class="text-center">悩み・相談・励まし合い...etc<br/>
+        ここは気軽に気持ちを打ち明けられるところです。</p>
     </div>
   </div>
   <div class="row">
-    <div class="btn-wrapper col-6 sm-6 mx-auto">
+    <div class="btn-wrapper col-6 mx-auto">
       <div class="row">
-        <%= link_to "ゲストログイン（閲覧用）", "", class: "btn btn-secondary btn-sm btn-block mb-3 sign_in", method: :post %>
+        <%= link_to "ゲストログイン", users_guest_sign_in_path, class: "btn btn-secondary btn-sm btn-block mb-3 sign_in", method: :post %>
       </div>
       <div class="row">
         <%= link_to 'ログイン',new_user_session_path, class: "btn btn-info btn-sm btn-block mb-3 sign_in" %>
@@ -16,7 +19,7 @@
         <%= link_to '新規作成',new_user_registration_path, class: "btn btn-success btn-sm btn-block sign_up" %>
       </div>
       <div class="row">
-        <p>Copyright 2024 egaoto</p>
+        <p class="my-3 text-center">Copyright 2024 by egaoto</p>
       </div>
     </div>
   </div>

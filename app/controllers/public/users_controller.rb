@@ -15,6 +15,7 @@ class Public::UsersController < ApplicationController
   end
 
   def confirm
+    @user = current_user
   end
 
   def mypage
@@ -33,6 +34,12 @@ class Public::UsersController < ApplicationController
     end
   end
   
+  def destroy
+    user = User.find(params[:id])
+    user.destroy
+    redirect_to mypage_path
+  end
+  
   private
 
   def user_params
@@ -45,4 +52,11 @@ class Public::UsersController < ApplicationController
       redirect_to user_path(current_user)
     end
   end
+  
+  def ensure_guest_user
+    @user = User.find(params[:id])
+    if @user.email == "guest@example.com"
+      redirect_to user_path(current_user) , flash.now[:alert] = "ゲストユーザーはプロフィール編集画面へ遷移できません。"
+    end
+  end  
 end
