@@ -20,11 +20,15 @@
     <h6>自己紹介</h6>
     <p><%= @user.introduction %></p>
   </div>
+  <!--ゲストユーザーではない場合に編集ボタンを表示-->
+  <% if @user.email != "guest@example.com" %>
   <div class="row mr-2 d-frex justify-content-end">
     <%= link_to edit_user_path(@user.id) do %>
       <i class="fa-solid fa-user-gear rounded p-2 custom-border"></i>
     <% end %>
   </div>
+  <% end %>
+  
   <div class="row mt-2 mx-auto">
     <table class="table">
       <thead>
@@ -43,18 +47,18 @@
             <% end %>
           </td>
           <td>
-            <%= link_to post_path(post.user.id) do %>
+            <%= link_to post_path(post.user.id),style:"text-decoration: none;" do %>
               <%= post.title %>
               <%= post.body %>
             <% end %>
           </td>
           <td>
             <% if post.user == current_user %>
-              <%= link_to edit_post_path(post.id) do %>
-               <i class="fa-solid fa-pen-to-square custom-border"></i>
+              <%= link_to edit_post_path(post.id),style:"text-decoration: none;" do %>
+               <i class="fa-solid fa-pen-to-square p-2 custom-border"></i>
               <% end %>
-              <%= link_to post_path(post.id), method: :delete do %>
-                <i class="fa-solid fa-trash-can custom-border"></i>
+              <%= link_to post_path(post.id), method: :delete,style:"text-decoration: none;" do %>
+                <i class="fa-solid fa-trash-can p-2 custom-border"></i>
               <% end %>
             <% end %>
           </td>
