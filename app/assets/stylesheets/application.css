@@ -47,3 +47,13 @@ footer {
   border-color: #EEEEEE;
   border-width: 2px;
 }
+
+.flash-message.notice {
+  color: #009933;
+  border: 2px solid #009933;
+}
+
+.flash-message.alert {
+  color: #FF0000;
+  border: 2px solid #FF0000;
+}
