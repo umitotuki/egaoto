@@ -6,7 +6,7 @@
            <%= image_tag post.user.get_image, class:"rounded-circle mx-auto d-block" %>
          </div>
          <div class="col-7 my-3">
-        <%= link_to post_path(post.id) do %>
+        <%= link_to post_path(post.id),style:"text-decoration: none;" do %>
         <div>
            <h5 style="color: #000;"><%= post.title %></h5>
         </div>
