@@ -28,7 +28,7 @@ class User < ApplicationRecord
   
   validates :name, presence: true
   
-  def self.looks(search, model)
+  def self.looks(search, range)
     if search == "partial"
       @records = User.where("name LIKE?","%#{search}%")
     end
