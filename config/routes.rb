@@ -26,7 +26,7 @@ Rails.application.routes.draw do
     get '/about' => 'homes#about', as: 'about'
     get 'users/mypage' => 'users#mypage', as: 'mypage'
     get 'users/confirm' => 'users#confirm'
-    get 'search' => 'homes#search', as: 'search'
+    get "search" => "searches#search"
 
     resources :users, only: [:index, :show, :edit, :update, :destroy] do
       resource :relationships, only: [:create, :destroy]

@@ -17,7 +17,7 @@
         <main class="page-body" style="padding-bottom: 80px;">
           <div class="container">
             <% flash.each do |message_type, message| %>
-            <div class="col-6 mt-3 mx-auto flash-message <%= message_type %> "><%= message %></div>
+              <div class="col-6 mt-3 mx-auto flash-message <%= message_type %> "><%= message %></div>
             <% end %>
           </div>
         <%= yield %>
