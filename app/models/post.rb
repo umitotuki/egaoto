@@ -12,4 +12,10 @@ class Post < ApplicationRecord
     image.variant(resize_to_fill: [width, height]).processed
   end
   
+  def self.looks(search, model)
+    if search == "partial"
+      @records = Post.where("name LIKE?","%#{search}%")
+    end
+  end
+  
 end
