@@ -3,7 +3,7 @@ class Post < ApplicationRecord
   validates :body, presence: true
   has_one_attached :image
   belongs_to :user
-  
+
   def get_image(width, height)
     unless image.attached?
       file_path = Rails.root.join('app/assets/images/no_image.jpg')
@@ -11,11 +11,9 @@ class Post < ApplicationRecord
     end
     image.variant(resize_to_fill: [width, height]).processed
   end
-  
-  def self.looks(search, range)
-    if search == "partial"
+
+  def self.looks(search)
       @records = Post.where("title LIKE?","%#{search}%")
-    end
   end
-  
+
 end
