@@ -40,7 +40,7 @@
         <% end %>
       </div>
       <div class="col-7 my-3">
-        <%= link_to post_path(post.user.id),style:"text-decoration: none;" do %>
+        <%= link_to post_path(post.id), style:"text-decoration: none;" do %>
           <div class="row"><%= post.title %></div>
           <div class="row"><%= post.body %></div>
         <% end %>
