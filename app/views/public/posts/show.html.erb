@@ -42,10 +42,10 @@
         <% end %>
         
       </div>
-      <div class="col-7">
-        <p class="text-center"><%= post_comment.created_at.strftime('%Y/%m/%d %H:%M') %></p>
+      <div class="col-8 d-flex">
+        <p class="mr-3"><%= post_comment.created_at.strftime('%Y/%m/%d %H:%M') %></p>
         <% if post_comment.user == current_user %>
-          <%= link_to "削除", post_post_comment_path(post_comment.post, post_comment), method: :delete %>
+          <%= link_to "削除", post_post_comment_path(post_comment.post, post_comment), method: :delete, class: "btn btn-danger mb-3" %>
         <% end %>
       </div>
     </div>
