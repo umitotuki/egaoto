@@ -73,7 +73,7 @@ ActiveRecord::Schema.define(version: 2024_06_05_110654) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "post_commentents", force: :cascade do |t|
+  create_table "post_comments", force: :cascade do |t|
     t.integer "user_id", null: false
     t.integer "post_id", null: false
     t.text "comment", null: false
