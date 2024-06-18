@@ -1,6 +1,6 @@
-class Public::PostsCommentController < ApplicationController
+class Public::PostCommentsController < ApplicationController
   before_action :authenticate_user!
-  
+
   def create
     post = Post.find(params[:post_id])
     comment = PostComment.new(post_comment_params)
@@ -9,9 +9,9 @@ class Public::PostsCommentController < ApplicationController
     comment.save
     redirect_to post_path(post)
   end
-  
+
   private
-  
+
   def post_comment_params
     params.require(:post_comment).permit(:comment)
   end
