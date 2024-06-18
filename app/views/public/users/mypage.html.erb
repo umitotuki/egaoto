@@ -5,7 +5,7 @@
     </div>
     <div class="col-5 mt-3">
       <h5><%= @user.name %></h5>
-        <% if @user.is_active? %>
+        <% if @user.is_active == "true" %>
           <td>女性</td>
         <% else %>
           <td>男性</td>
@@ -28,7 +28,7 @@
     <% end %>
   </div>
   <% end %>
-  
+
   <div class="row mt-2 mx-auto">
     <table class="table">
       <thead>
