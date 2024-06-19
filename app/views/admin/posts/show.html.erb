@@ -41,7 +41,7 @@
       </div>
       <div class="col-8 d-flex">
         <p class="mr-3"><%= post_comment.created_at.strftime('%Y/%m/%d %H:%M') %></p>
-          <%= link_to "削除", post_post_comment_path(post_comment.post, post_comment), method: :delete,"data-confirm" => "本当に削除しますか？", class: "btn btn-danger mb-3" %>
+          <%= link_to "削除", admin_post_post_comment_path(post_comment.post, post_comment), method: :delete,"data-confirm" => "本当に削除しますか？", class: "btn btn-danger mb-3" %>
       </div>
     </div>
   <% end %>
