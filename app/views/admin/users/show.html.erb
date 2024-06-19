@@ -1,2 +1,51 @@
-<h1>Admin::Users#show</h1>
-<p>Find me in app/views/admin/users/show.html.erb</p>
+<div class="col-4 mx-auto my-3" style="background-color: #FFFFFF;">
+  <div class="row">
+    <div class="col-6 mt-3">
+      <%= image_tag @user.get_image, class:"rounded-circle mx-auto d-block" %>
+    </div>
+    <div class="col-5 mt-3">
+      <h5><%= @user.name %></h5>
+        <% if @user.is_active == "true" %>
+          <td>女性</td>
+        <% else %>
+          <td>男性</td>
+        <% end %>
+    </div>
+  </div>
+  <div class="row ml-3 mt-3">
+    <p>生年月日：<%= @user.birth %><br/>
+      位置情報：<%= @user.location %></p>
+  </div>
+  <div class="row ml-3">
+    <h6>自己紹介</h6>
+    <p><%= @user.introduction %></p>
+  </div>
+  <div class="row mr-2 d-frex justify-content-end">
+    <%= link_to "退会", admin_user_path, method: :delete, "data-confirm" => "本当に退会させますか？", class: "btn btn-danger" %>
+  </div>
+
+  <div class="row d-frex justify-content-center">
+    <h5>投稿一覧</h5>
+  </div>
+  <% @posts.each do |post| %>
+    <div class="row">
+      <div class="col-4 my-3">
+        <%= link_to admin_user_path(post.user.id) do %>
+          <%= image_tag post.user.get_image, class:"rounded-circle mx-auto d-block" %>
+        <% end %>
+      </div>
+      <div class="col-7 my-3">
+        <%= link_to admin_post_path(post.id), style:"text-decoration: none;" do %>
+          <h5 style="color: #000;"><%= post.title %></h5>
+          <p style="color: #000;"><%= post.body %></p>
+        <% end %>
+      </div>
+    </div>
+    <div class="row mr-3 d-frex justify-content-end">
+      <p class="mr-4"><%= link_to "コメント件数:#{post.post_comments.count}", admin_post_path(post.id) %></p>
+      <%= link_to post_path(post.id), method: :delete,style:"text-decoration: none;" do %>
+        <i class="fa-solid fa-trash-can p-2 custom-border"></i>
+      <% end %>
+    </div>
+  <% end %>
+</div>
