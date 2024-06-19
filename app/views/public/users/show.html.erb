@@ -48,7 +48,9 @@
       </div>
     </div>
     <div class="row mr-3 d-frex justify-content-end">
-      <p class="mr-4"><%= link_to "コメント件数:#{post.post_comments.count}", post_path(post.id) %></p>
+      <%= link_to post_path(post.id) do %>
+        <p class="mr-4"><i class="fa-regular fa-comment mx-1"></i><%= post.post_comments.count %></p>
+      <% end %>
       <% if post.user == current_user %>
         <%= link_to edit_post_path(post.id),class: "mr-3",style:"text-decoration: none;" do %>
          <i class="fa-solid fa-pen-to-square p-2 custom-border"></i>

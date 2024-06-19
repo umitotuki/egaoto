@@ -10,7 +10,7 @@
       <div class="row">
         <div class="col-4 my-3 text-center">
           <%= image_tag post.user.get_image, class:"rounded-circle mx-auto d-block" %>
-          <%= link_to post.user.name ,user_path(post.user), class:"my-3" ,style:"color: #000;" %>
+          <%= link_to post.user.name , admin_user_path(post.user), class:"my-3" ,style:"color: #000;" %>
         </div>
         <div class="col-7 my-3">
           <%= link_to admin_post_path(post.id) do %>
