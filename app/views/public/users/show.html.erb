@@ -53,7 +53,7 @@
         <%= link_to edit_post_path(post.id),class: "mr-3",style:"text-decoration: none;" do %>
          <i class="fa-solid fa-pen-to-square p-2 custom-border"></i>
         <% end %>
-        <%= link_to post_path(post.id), method: :delete,style:"text-decoration: none;" do %>
+        <%= link_to post_path(post.id), method: :delete,"data-confirm" => "本当に削除しますか？", style:"text-decoration: none;" do %>
           <i class="fa-solid fa-trash-can p-2 custom-border"></i>
         <% end %>
       <% end %>
