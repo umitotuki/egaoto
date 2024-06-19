@@ -3,20 +3,23 @@
     <h3 class="mt-3">新規投稿</h3>
   </diV>
      <%= form_with model: @post, url: posts_path(@post), method: :post do |f| %>
-     <div class="row my-3 d-frex justify-content-center">
-       <%= f.text_field :title, placeholder: 'タイトル名', class:"ml-4 mb-3 w-75" %>
-       <%= f.text_area :body, placeholder: '投稿内容', class:"ml-4 mb-3 w-75" %>
-       <%= f.file_field :image, accept: "image/*", class:"align-top ml-4 mb-3" %>
-     </div>
-     <div class="row d-frex justify-content-center">
-      <%= f.radio_button :is_draft, :true %>
-      <%= f.label :下書き　 %>
-      <%= f.radio_button :is_draft, :false %>
-      <%= f.label :投稿　 %>
-     </div>
-     <div class="row d-frex justify-content-center">
-       <%= f.submit '新規投稿', class: "btn btn-success my-3" %>
-     </div>
+       <div class="row my-3 d-frex justify-content-center">
+         <%= f.text_field :title, placeholder: 'タイトル名', class:"ml-4 mb-3 w-75" %>
+         <%= f.text_area :body, placeholder: '投稿内容', class:"ml-4 mb-3 w-75" %>
+         <%= f.file_field :image, accept: "image/*", class:"align-top ml-4 mb-3" %>
+        </div>
+        <div class="row mb-3 d-frex justify-content-center">
+          <%= f.select :genre_id, options_from_collection_for_select(Genre.all, :id, :name), include_blank: 'ジャンル選択' %>
+        </div>
+        <div class="row d-frex justify-content-center">
+          <%= f.radio_button :is_draft, :true %>
+          <%= f.label :下書き　 %>
+          <%= f.radio_button :is_draft, :false %>
+          <%= f.label :投稿　 %>
+        </div>
+        <div class="row d-frex justify-content-center">
+          <%= f.submit '新規投稿', class: "btn btn-success my-3" %>
+        </div>
      <% end %>
   </div>
 </div>

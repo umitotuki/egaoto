@@ -1,0 +1,5 @@
+<%= form_with url: genre_search_path, method: :get do |f| %>
+   <% genres.each do |genre| %>
+     <%= link_to genre.name, genre_search_path(genre_id: genre.id), method: :get %>
+  <% end %>
+<% end %>
