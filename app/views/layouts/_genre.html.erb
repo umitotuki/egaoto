@@ -1,0 +1,3 @@
+<% genres.each do |genre| %>
+  <%= link_to "* " + genre.name, genre_search_path(genre_id: genre.id), method: :get %>
+<% end %>
