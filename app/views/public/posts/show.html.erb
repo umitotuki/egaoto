@@ -1,4 +1,4 @@
-<div class="col-4 mx-auto my-3" style="background-color: #FFFFFF;">
+<div class="col-12 col-xl-4 col-lg-6 col-md-8 col-sm-10 mx-auto my-3" style="background-color: #FFFFFF;">
   <div class="row">
     <div class="col-3 mt-4 ml-3">
       <%= image_tag @post.user.get_image, class:"rounded-circle mx-auto d-block" %>
@@ -12,7 +12,7 @@
     </div>
   </div>
   <div class="row d-frex justify-content-center">
-    <%= image_tag @post.get_image(400, 400) %>
+    <%= image_tag @post.get_image(400, 300) %>
   </div>
   <div class="row ml-4">
     <div class="col">
@@ -30,7 +30,6 @@
   <div class="row mr-4 d-frex justify-content-end">
     <% if @post.user == current_user %>
       <%= link_to '編集', edit_post_path(@post.id), class: "btn btn-success mx-3 my-2" %>
-      <%= link_to "削除", post_path(@post), method: :delete, "data-confirm" => "本当に削除しますか？",class: "btn btn-danger mr-3 my-2" %>
     <% end %>
   </div>
   <% @post.post_comments.each do |post_comment| %>
@@ -47,7 +46,6 @@
         <%= link_to user_path(post_comment.user) do %>
           <p class="text-center"><%= post_comment.user.name %></p>
         <% end %>
-
       </div>
       <div class="col-8 d-flex">
         <p class="mr-3"><%= post_comment.created_at.strftime('%Y/%m/%d %H:%M') %></p>
