@@ -1,4 +1,4 @@
- <div class="col-4 mx-auto mt-3" style="background-color: #FFFFFF;">
+ <div class="col-12 col-xl-4 col-lg-6 col-md-8 col-sm-10 mx-auto mt-3" style="background-color: #FFFFFF;">
    <div class="d-flex justify-content-center">
      <div class="my-3">
        <%= render partial: 'layouts/search' %>
@@ -17,6 +17,15 @@
             <h5 style="color: #000;"><%= post.title %></h5>
             <p style="color: #000;"><%= post.body %></p>
           <% end %>
+        </div>
+      </div>
+      <div class="row justify-content-end">
+        <div class="col-7">
+          <% if post.genre.present? %>
+            <p>ジャンル:<%= post.genre.name %></p>
+          <% else %>
+            <p>ジャンル:　　</p>
+          <% end %>  
         </div>
       </div>
      </div>
