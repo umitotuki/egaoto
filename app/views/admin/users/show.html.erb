@@ -12,12 +12,12 @@
         <% end %>
     </div>
   </div>
-  <div class="row ml-3 mt-3">
+  <div class="row mx-3 mt-3">
     <p>生年月日：<%= @user.birth %><br/>
       位置情報：<%= @user.location %></p>
   </div>
-  <div class="row ml-3">
-    <h6>自己紹介</h6>
+  <div class="row mx-3">
+    <h6>自己紹介:</h6>
     <p><%= @user.introduction %></p>
   </div>
   <div class="row mr-2 d-frex justify-content-end">
@@ -38,6 +38,15 @@
         <%= link_to admin_post_path(post.id), style:"text-decoration: none;" do %>
           <h5 style="color: #000;"><%= post.title %></h5>
           <p style="color: #000;"><%= post.body %></p>
+        <% end %>
+      </div>
+    </div>
+    <div class="row justify-content-end">
+      <div class="col-7">
+        <% if post.genre.present? %>
+          <p>ジャンル:<%= post.genre.name %></p>
+        <% else %>
+          <p>ジャンル:　　</p>
         <% end %>
       </div>
     </div>
