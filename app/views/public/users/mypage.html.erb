@@ -5,7 +5,7 @@
     </div>
     <div class="col-5 mt-3">
       <h5><%= @user.name %></h5>
-        <% if @user.is_active? %>
+        <% if @user.is_active == "true" %>
           <td>女性</td>
         <% else %>
           <td>男性</td>
@@ -29,42 +29,35 @@
   </div>
   <% end %>
   
-  <div class="row mt-2 mx-auto">
-    <table class="table">
-      <thead>
-        <tr>
-          <th></th>
-          <th>投稿一覧</th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody>
-      <% @posts.each do |post| %>
-        <tr>
-          <td>
-            <%= link_to user_path(post.user.id) do %>
-              <%= image_tag post.user.get_image, class:"rounded-circle mx-auto d-block" %>
-            <% end %>
-          </td>
-          <td>
-            <%= link_to post_path(post.user.id),style:"text-decoration: none;" do %>
-              <%= post.title %>
-              <%= post.body %>
-            <% end %>
-          </td>
-          <td>
-            <% if post.user == current_user %>
-              <%= link_to edit_post_path(post.id),style:"text-decoration: none;" do %>
-               <i class="fa-solid fa-pen-to-square p-2 custom-border"></i>
-              <% end %>
-              <%= link_to post_path(post.id), method: :delete,style:"text-decoration: none;" do %>
-                <i class="fa-solid fa-trash-can p-2 custom-border"></i>
-              <% end %>
-            <% end %>
-          </td>
-        </tr>
-      <% end %>
-      </tbody>
-    </table>
+  <div class="row d-frex justify-content-center">
+    <h5>投稿一覧</h5>
   </div>
+  <% @posts.each do |post| %>
+    <div class="row">
+      <div class="col-4 my-3">
+        <%= link_to user_path(post.user.id) do %>
+          <%= image_tag post.user.get_image, class:"rounded-circle mx-auto d-block" %>
+        <% end %>
+      </div>
+      <div class="col-7 my-3">
+        <%= link_to post_path(post.id), style:"text-decoration: none;" do %>
+          <h5 style="color: #000;"><%= post.title %></h5>
+          <p style="color: #000;"><%= post.body %></p>
+        <% end %>
+      </div>
+    </div>
+    <div class="row mr-3 d-frex justify-content-end">
+      <%= link_to post_path(post.id) do %>
+        <p class="mr-4"><i class="fa-regular fa-comment mx-1"></i><%= post.post_comments.count %></p>
+      <% end %>
+      <% if post.user == current_user %>
+        <%= link_to edit_post_path(post.id),class: "mr-3",style:"text-decoration: none;" do %>
+         <i class="fa-solid fa-pen-to-square p-2 custom-border"></i>
+        <% end %>
+        <%= link_to post_path(post.id), method: :delete,style:"text-decoration: none;" do %>
+          <i class="fa-solid fa-trash-can p-2 custom-border"></i>
+        <% end %>
+      <% end %>
+    </div>
+  <% end %>
 </div>

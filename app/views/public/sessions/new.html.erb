@@ -4,16 +4,16 @@
   </div>
   
     <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-    <div class="col mx-auto">
-      <h5 class="my-2">メールアドレス</h5> 
-        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", placeholder: "sample@example.com" %>
-      <h5 class="my-2">パスワード</h5>
-        <%= f.password_field :password, autocomplete: "current-password", class: "form-control" %>
-    </div>
-    <div class="row justify-content-center">
-      <%= f.submit "ログイン", class:"btn btn-primary my-4"%>
-    </div>
-    <% end %>
+      <div class="col mx-auto">
+        <h5 class="my-2">メールアドレス</h5> 
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", placeholder: "sample@example.com" %>
+        <h5 class="my-2">パスワード</h5>
+          <%= f.password_field :password, autocomplete: "current-password", class: "form-control" %>
+      </div>
+      <div class="row justify-content-center">
+        <%= f.submit "ログイン", class:"btn btn-primary my-4" %>
+      </div>
+      <% end %>
     <div class="row mb-4 ml-4">
       <p>登録がお済みでない方<br/>
         <%= link_to "こちら", new_user_registration_path %>　から新規登録ができます。</p>
