@@ -1,4 +1,4 @@
-<div class="col-4 mx-auto my-3" style="background-color: #FFFFFF;">
+<div class="col-12 col-xl-4 col-lg-6 col-md-8 col-sm-10 mx-auto my-3" style="background-color: #FFFFFF;">
   <div class="row d-frex justify-content-center">
     <h3 class="my-3">ジャンル検索結果</h3>
   </div>
@@ -8,18 +8,16 @@
       <div class="row">
         <div class="col-4 my-3 text-center">
           <%= image_tag post.user.get_image, class:"rounded-circle mx-auto d-block" %>
+          <%= link_to post.user.name ,user_path(post.user), class:"my-3" ,style:"color: #000;" %>
         </div>
         <div class="col-7 my-3">
           <%= link_to post_path(post.id) do %>
-            <h5 style="color: #000;"><%= post.title %></h5>
-            <p style="color: #000;"><%= post.body %></p>
+            <h5 style="color: #000;"><%= truncate(post.title, length: 25) %></h5>
+            <p style="color: #000;"><%= truncate(post.body, length: 75) %></p>
           <% end %>
         </div>
       </div>
-      <div class="row">
-        <div class="col-4">
-          <%= link_to post.user.name ,user_path(post.user), class:"my-3" ,style:"color: #000;" %>
-        </div>
+      <div class="row justify-content-end">
         <div class="col-7">
           <% if post.genre.present? %>
             <p>ジャンル:<%= post.genre.name %></p>
