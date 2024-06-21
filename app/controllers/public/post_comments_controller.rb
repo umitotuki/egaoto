@@ -6,8 +6,15 @@ class Public::PostCommentsController < ApplicationController
     comment = PostComment.new(post_comment_params)
     comment.user_id = current_user.id
     comment.post_id = post.id
-    comment.save
-    redirect_to post_path(post)
+    if comment.save
+      flash[:notice] = "コメントの投稿に成功しました。"
+      redirect_to post_path(post)
+    else
+      flash.now[:alert] = "コメントの投稿に失敗しました"
+      @post = post
+      @post_comment = comment 
+      render "public/posts/show"
+    end
   end
 
   def destroy
