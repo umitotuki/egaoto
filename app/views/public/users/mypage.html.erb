@@ -28,7 +28,7 @@
     <% end %>
   </div>
   <% end %>
-  
+
   <div class="row d-frex justify-content-center">
     <h5>投稿一覧</h5>
   </div>
@@ -41,8 +41,8 @@
       </div>
       <div class="col-7 my-3">
         <%= link_to post_path(post.id), style:"text-decoration: none;" do %>
-          <h5 style="color: #000;"><%= post.title %></h5>
-          <p style="color: #000;"><%= post.body %></p>
+          <h5 style="color: #000;"><%= truncate(post.title, length: 25) %></h5>
+          <p style="color: #000;"><%= truncate(post.body, length: 75) %></p>
         <% end %>
       </div>
     </div>
@@ -52,7 +52,7 @@
           <p>ジャンル:<%= post.genre.name %></p>
         <% else %>
           <p>ジャンル:　　</p>
-        <% end %>  
+        <% end %>
       </div>
     </div>
     <div class="row mr-3 d-frex justify-content-end">

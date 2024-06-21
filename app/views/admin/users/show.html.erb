@@ -36,8 +36,8 @@
       </div>
       <div class="col-7 my-3">
         <%= link_to admin_post_path(post.id), style:"text-decoration: none;" do %>
-          <h5 style="color: #000;"><%= post.title %></h5>
-          <p style="color: #000;"><%= post.body %></p>
+          <h5 style="color: #000;"><%= truncate(post.title, length: 25) %></h5>
+          <p style="color: #000;"><%= truncate(post.body, length: 75) %></p>
         <% end %>
       </div>
     </div>
