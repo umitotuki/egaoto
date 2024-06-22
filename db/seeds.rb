@@ -63,6 +63,4 @@ post.genres << genre
 post.save
 
 
-
 puts "seedの実行が完了しました"
-
