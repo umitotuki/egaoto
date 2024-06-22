@@ -12,7 +12,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     get 'top' => 'homes#top', as: 'top'
-    get 'search' => 'homes#search', as: 'search'
+    get 'search' => 'searches#search', as: 'search'
 
     resources :posts, only: [:index, :show, :destroy] do
       resources :post_comment, only: [:destroy]
@@ -26,7 +26,7 @@ Rails.application.routes.draw do
     get '/about' => 'homes#about', as: 'about'
     get 'users/mypage' => 'users#mypage', as: 'mypage'
     get 'users/confirm' => 'users#confirm'
-    get 'search' => 'homes#search', as: 'search'
+    get 'search' => 'searches#search', as: 'search'
     get 'genre/search' => 'searches#genre_search' , as: 'genre_search'
 
     resources :users, only: [:index, :show, :edit, :update, :destroy] do
