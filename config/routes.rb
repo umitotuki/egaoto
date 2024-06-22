@@ -15,10 +15,10 @@ Rails.application.routes.draw do
     get 'search' => 'homes#search', as: 'search'
 
     resources :posts, only: [:index, :show, :destroy] do
-      resources :post_comments, only: [:destroy]
+      resources :post_comment, only: [:destroy]
     end
-    resources :users, only: [:index, :show, :destroy]
-    resources :genres, only: [:index, :create, :edit, :destroy]
+    resources :users, only: [:index, :show, :edit, :destroy]
+    resources :genres, only: [:index, :create, :edit, :update, :destroy]
   end
 
   scope module: :public do
@@ -26,15 +26,14 @@ Rails.application.routes.draw do
     get '/about' => 'homes#about', as: 'about'
     get 'users/mypage' => 'users#mypage', as: 'mypage'
     get 'users/confirm' => 'users#confirm'
-    get "search" => "searches#search"
-    get '/genre/search' => 'searches#genre_search'
+    get 'search' => 'homes#search', as: 'search'
 
     resources :users, only: [:index, :show, :edit, :update, :destroy] do
       resource :relationships, only: [:create, :destroy]
     end
     resources :posts do
       resource :favorites, only: [:index, :create, :destroy]
-      resources :post_comments, only: [:create, :destroy]
+      resources :post_comment, only: [:create, :destroy]
     end
     resources :chats, only: [:show, :create, :destroy]
   end
