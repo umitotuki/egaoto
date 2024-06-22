@@ -27,6 +27,7 @@ Rails.application.routes.draw do
     get 'users/mypage' => 'users#mypage', as: 'mypage'
     get 'users/confirm' => 'users#confirm'
     get 'search' => 'homes#search', as: 'search'
+    get 'genre/search' => 'searches#genre_search' , as: 'genre_search'
 
     resources :users, only: [:index, :show, :edit, :update, :destroy] do
       resource :relationships, only: [:create, :destroy]
