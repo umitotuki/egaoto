@@ -60,7 +60,7 @@
         <p class="mr-4"><i class="fa-regular fa-comment mx-1"></i><%= post.post_comments.count %></p>
       <% end %>
       <% if post.user == current_user %>
-        <%= link_to edit_post_path(post.id),class: "mr-3",style:"text-decoration: none;" do %>
+        <%= link_to edit_post_path(post.id),class: "mr-3", style: "text-decoration: none;" do %>
          <i class="fa-solid fa-pen-to-square p-2 custom-border"></i>
         <% end %>
         <%= link_to post_path(post.id), method: :delete,style:"text-decoration: none;" do %>
