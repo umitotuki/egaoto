@@ -55,22 +55,22 @@
         <% end %>
       </div>
     </div>
-    <div class="row mr-3 d-frex justify-content-end">
+    <div class="row mr-3 pb-3 d-frex justify-content-end">
       <!--コメント-->
       <%= link_to post_path(post.id) do %>
-        <p class="mr-4"><i class="fa-regular fa-comment mx-1"></i><%= post.post_comments.count %></p>
+        <p class="mr-3"><i class="fa-regular fa-comment mx-1"></i><%= post.post_comments.count %></p>
       <% end %>
       <!--いいね-->
       <% if post.favorited_by?(current_user) %>
         <p>
           <%= link_to post_favorites_path(post), method: :delete do %>
-            <i class="fa-solid fa-heart" style="color: #d80e4a;"></i><%= post.favorites.count %>
+            <p class="mr-3"><i class="fa-solid fa-heart mr-1" style="color: #d80e4a;"></i><%= post.favorites.count %></p>
           <% end %>
         </p>
       <% else %>
         <p>
           <%= link_to post_favorites_path(post), method: :post do %>
-            <i class="fa-regular fa-heart"></i><%= post.favorites.count %>
+            <p class="mr-3"><i class="fa-regular fa-heart mr-1"></i><%= post.favorites.count %></p>
           <% end %>
         </p>
       <% end %>
