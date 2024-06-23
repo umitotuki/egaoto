@@ -51,10 +51,10 @@
       </div>
     </div>
     <div class="row mr-3 d-frex justify-content-end">
-      <%= link_to post_path(post.id) do %>
+      <%= link_to admin_post_path(post.id) do %>
         <p class="mr-4"><i class="fa-regular fa-comment mx-1"></i><%= post.post_comments.count %></p>
       <% end %>
-      <%= link_to post_path(post.id), method: :delete,style: "text-decoration: none;" do %>
+      <%= link_to admin_post_path(post.id), method: :delete, "data-confirm" => "本当に削除しますか？", style: "text-decoration: none;" do %>
         <i class="fa-solid fa-trash-can p-2 custom-border"></i>
       <% end %>
     </div>
