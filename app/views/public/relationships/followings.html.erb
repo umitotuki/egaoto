@@ -1,0 +1,25 @@
+<div class="col-12 col-xl-4 col-lg-6 col-md-8 col-sm-10 mx-auto" style="background-color: #FFFFFF;">
+  <div class="d-flex justify-content-center m-3">
+    <h3>フォロー</h3>
+  </div>
+  <% if @users.exists? %>
+    <table class="table">
+      <thead>
+        <tr>
+          <th style="text-align: center;">プロフィール画像</th>
+          <th style="text-align: center;">ユーザー名</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @users.each do |user| %>
+          <tr>
+            <td><%= image_tag user.get_image, class:"rounded-circle mx-auto d-block" %></td>
+            <td style="text-align: center;vertical-align: middle; font-size: 20px;"><%= link_to user.name ,user_path(user) %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% else %>
+    <p>ユーザーはいません</p>
+  <% end %>
+</div>
