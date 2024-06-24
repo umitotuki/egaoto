@@ -59,5 +59,9 @@ class Public::UsersController < ApplicationController
     if @user.email == "guest@example.com"
       redirect_to user_path(current_user) , flash.now[:alert] = "ゲストユーザーはプロフィール編集画面へ遷移できません。"
     end
-  end  
+  end 
+  
+  def favorite_posts
+    @favorite_posts = Post.favorite_posts(current_user)
+  end
 end

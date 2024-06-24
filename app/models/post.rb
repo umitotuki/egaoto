@@ -23,5 +23,10 @@ class Post < ApplicationRecord
   def self.looks(search)
       @records = Post.where("title LIKE?","%#{search}%")
   end
-
+  
+  def self.liked_posts(user) 
+    includes(:post_favorites) 
+      .where(post_favorites: { user_id: user.id }) 
+      .order(created_at: :desc)
+  end
 end

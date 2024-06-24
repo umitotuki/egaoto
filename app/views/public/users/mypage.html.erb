@@ -91,4 +91,51 @@
       <h5 class="py-3">投稿はありません</h5>
     </div>
   <% end %>
+  <!--いいね一覧-->
+  <div class="d-flex flex-column">
+     <h2>いいね一覧</h2>
+    <% @favorite_posts.each do |post|  %>
+     <div class="card border-light shadow m-3">
+      <div class="row">
+        <div class="col-4 my-3 text-center">
+          <%= image_tag post.user.get_image, class:"rounded-circle mx-auto d-block" %>
+          <%= link_to post.user.name ,user_path(post.user), class:"my-3" ,style:"color: #000;" %>
+        </div>
+        <div class="col-7 my-3">
+          <%= link_to post_path(post.id) do %>
+            <h5 style="color: #000;"><%= truncate(post.title, length: 25) %></h5>
+            <p style="color: #000;"><%= truncate(post.body, length: 75) %></p>
+          <% end %>
+        </div>
+      </div>
+      <div class="row mr-4 justify-content-end">
+        <!--コメント-->
+        <%= link_to post_path(post.id) do %>
+          <p class="mr-3"><i class="fa-regular fa-comment mx-1"></i><%= post.post_comments.count %></p>
+        <% end %>
+       <!--いいね-->
+        <% if post.favorited_by?(current_user) %>
+         <p>
+          <%= link_to post_favorites_path(post), method: :delete do %>
+            <p class="mr-3"><i class="fa-solid fa-heart mr-1" style="color: #d80e4a;"></i><%= post.favorites.count %></p>
+          <% end %>
+         </p>
+        <% else %>
+          <p>
+            <%= link_to post_favorites_path(post), method: :post do %>
+              <p class="mr-3"><i class="fa-regular fa-heart mr-1"></i><%= post.favorites.count %></p>
+            <% end %>
+          </p>
+        <% end %>
+
+        <% if post.genre.present? %>
+          <p>ジャンル:<%= post.genre.name %></p>
+        <% else %>
+          <p>ジャンル:　　</p>
+        <% end %>
+      </div>
+     </div>
+    <% end %>
+   </div>
 </div>
+
