@@ -19,14 +19,17 @@
           <% end %>
         </div>
       </div>
-      <div class="row justify-content-end">
-        <div class="col-7">
-          <% if post.genre.present? %>
-            <p>ジャンル:<%= post.genre.name %></p>
-          <% else %>
-            <p>ジャンル:　　</p>
-          <% end %>  
-        </div>
+      <div class="row mr-4 justify-content-end">
+        <%= link_to post_path(post.id) do %>
+          <p class="mr-3"><i class="fa-regular fa-comment mx-1"></i><%= post.post_comments.count %></p>
+        <% end %>
+       <!--いいね-->
+        <p class="mr-3"><i class="fa-regular fa-heart mr-1"></i><%= post.favorites.count %></p>
+        <% if post.genre.present? %>
+          <p>ジャンル:<%= post.genre.name %></p>
+        <% else %>
+          <p>ジャンル:　　</p>
+        <% end %>  
       </div>
      </div>
     <% end %>
