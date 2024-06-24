@@ -36,54 +36,56 @@
   </div>
   <% if @posts.present? %>
     <% @posts.each do |post| %>
-      <div class="row">
-        <div class="col-4 my-3">
-          <%= link_to user_path(post.user.id) do %>
-            <%= image_tag post.user.get_image, class:"rounded-circle mx-auto d-block" %>
-          <% end %>
-        </div>
-        <div class="col-7 my-3">
-          <%= link_to post_path(post.id), style:"text-decoration: none;" do %>
-            <h5 style="color: #000;"><%= truncate(post.title, length: 25) %></h5>
-            <p style="color: #000;"><%= truncate(post.body, length: 75) %></p>
-          <% end %>
-        </div>
-      </div>
-      <div class="row mr-2 justify-content-end">
-          <% if post.genre.present? %>
-            <p>ジャンル:<%= post.genre.name %></p>
-          <% else %>
-            <p>ジャンル:　　</p>
-          <% end %>
-      </div>
-      <div class="row mr-3 pb-3 d-frex justify-content-end">
-        <!--コメント-->
-        <%= link_to post_path(post.id) do %>
-          <p class="mr-3"><i class="fa-regular fa-comment mx-1"></i><%= post.post_comments.count %></p>
-        <% end %>
-        <!--いいね-->
-        <% if post.favorited_by?(current_user) %>
-          <p>
-            <%= link_to post_favorites_path(post), method: :delete do %>
-              <p class="mr-3"><i class="fa-solid fa-heart mr-1" style="color: #d80e4a;"></i><%= post.favorites.count %></p>
-            <% end %>
-          </p>
-        <% else %>
-          <p>
-            <%= link_to post_favorites_path(post), method: :post do %>
-              <p class="mr-3"><i class="fa-regular fa-heart mr-1"></i><%= post.favorites.count %></p>
-            <% end %>
-          </p>
-        <% end %>
-        <!--編集と削除ボタン-->
-        <% if post.user == current_user %>
-          <%= link_to edit_post_path(post.id),class: "mr-3", style: "text-decoration: none;" do %>
-           <i class="fa-solid fa-pen-to-square p-2 custom-border"></i>
-          <% end %>
-          <%= link_to post_path(post.id), method: :delete,style:"text-decoration: none;" do %>
-            <i class="fa-solid fa-trash-can p-2 custom-border"></i>
-          <% end %>
-        <% end %>
+      <div class="card border-light shadow m-3">
+         <div class="row">
+           <div class="col-4 my-3">
+             <%= link_to user_path(post.user.id) do %>
+               <%= image_tag post.user.get_image, class:"rounded-circle mx-auto d-block" %>
+             <% end %>
+           </div>
+           <div class="col-7 my-3">
+             <%= link_to post_path(post.id), style:"text-decoration: none;" do %>
+               <h5 style="color: #000;"><%= truncate(post.title, length: 25) %></h5>
+               <p style="color: #000;"><%= truncate(post.body, length: 75) %></p>
+             <% end %>
+           </div>
+         </div>
+         <div class="row mr-2 justify-content-end">
+             <% if post.genre.present? %>
+               <p>ジャンル:<%= post.genre.name %></p>
+             <% else %>
+               <p>ジャンル:　　</p>
+             <% end %>
+         </div>
+         <div class="row mr-3 pb-3 d-frex justify-content-end">
+           <!--コメント-->
+           <%= link_to post_path(post.id) do %>
+             <p class="mr-3"><i class="fa-regular fa-comment mx-1"></i><%= post.post_comments.count %></p>
+           <% end %>
+           <!--いいね-->
+           <% if post.favorited_by?(current_user) %>
+             <p>
+               <%= link_to post_favorites_path(post), method: :delete do %>
+                 <p class="mr-3"><i class="fa-solid fa-heart mr-1" style="color: #d80e4a;"></i><%= post.favorites.count %></p>
+               <% end %>
+             </p>
+           <% else %>
+             <p>
+               <%= link_to post_favorites_path(post), method: :post do %>
+                 <p class="mr-3"><i class="fa-regular fa-heart mr-1"></i><%= post.favorites.count %></p>
+               <% end %>
+             </p>
+           <% end %>
+           <!--編集と削除ボタン-->
+           <% if post.user == current_user %>
+             <%= link_to edit_post_path(post.id),class: "mr-3", style: "text-decoration: none;" do %>
+              <i class="fa-solid fa-pen-to-square p-2 custom-border"></i>
+             <% end %>
+             <%= link_to post_path(post.id), method: :delete,style:"text-decoration: none;" do %>
+               <i class="fa-solid fa-trash-can p-2 custom-border"></i>
+             <% end %>
+           <% end %>
+         </div>
       </div>
     <% end %>
   <% else %>

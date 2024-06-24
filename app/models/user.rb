@@ -7,6 +7,7 @@ class User < ApplicationRecord
   has_many :posts, dependent: :destroy
   has_many :post_comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
+  has_many :favorite_posts, through: :favorites, source: :post
 
   # フォローする
   has_many :active_relationships, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
@@ -30,9 +31,10 @@ class User < ApplicationRecord
   GUEST_USER_BIRTH = "xxxx年xx月xx日"
 
   def self.guest
-    find_or_create_by!(email: GUEST_USER_EMAIL, birth:GUEST_USER_BIRTH) do |user|
+    find_or_create_by!(email: GUEST_USER_EMAIL) do |user|
       user.password = SecureRandom.urlsafe_base64
       user.name = "guestuser"
+      user.birth = GUEST_USER_BIRTH
     end
   end
 
@@ -43,15 +45,18 @@ class User < ApplicationRecord
   end
 
   def follow(user)
-    active_relationships.create(follower_id: user.id)
+    active_relationships.create(followed_id: user.id)
   end
 
   def unfollow(user)
-    active_relationships.find_by(followed_id: user.id).destroy
+    relationship = active_relationships.find_by(followed_id: user.id)
+    unless relationship.nil?
+      relationship.destroy
+    end
   end
 
   def following?(user)
-    followings.include?(user.id)
+    followings.exists?(id: user.id)
   end
 
 end
