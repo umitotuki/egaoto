@@ -23,5 +23,4 @@ class Post < ApplicationRecord
   def self.looks(search)
       @records = Post.where("title LIKE?","%#{search}%")
   end
-
 end
