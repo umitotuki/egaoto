@@ -36,6 +36,12 @@
       <% end %>
     <% end %>
     
+    <% if current_user != @user && current_user.following?(@user) && @user.following?(current_user) %>
+      <%= link_to chat_path(@user.id) do %>
+      <i class="fa-regular fa-envelope rounded p-2 custom-border ml-2"></i>
+      <% end %>
+    <% end %>
+  
     <% if @user.email != "guest@example.com" %>
       <% if @user == current_user %>
         <%= link_to edit_user_path(@user.id) do %>
