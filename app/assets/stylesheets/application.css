@@ -89,3 +89,57 @@ footer {
   padding: 15px;
   background: #F8C6BD;
 }
+
+.chat-right {
+  position: relative;
+  margin: 1.5em 15px 1.5em 0;
+  padding: 7px 10px;
+  min-width: 120px;
+  max-width: 100%;
+  color: #555;
+  font-size: 16px;
+  background: #e0edff;
+  border-radius: 5px;
+}
+
+.chat-right:before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  margin-top: -15px;
+  border: 15px solid transparent;
+  border-left: 15px solid #e0edff;
+}
+
+.chat-right p {
+  margin: 0;
+  padding: 0;
+}
+
+.chat-left {
+  position: relative;
+  margin: 1.5em 0 1.5em 15px;
+  padding: 7px 10px;
+  min-width: 120px;
+  max-width: 100%;
+  color: #555;
+  font-size: 16px;
+  background: #fedcec;
+  border-radius: 5px;
+}
+
+.chat-left:before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: -30px;
+  margin-top: -15px;
+  border: 15px solid transparent;
+  border-right: 15px solid #fedcec;
+}
+
+.chat-left p {
+  margin: 0;
+  padding: 0;
+}
