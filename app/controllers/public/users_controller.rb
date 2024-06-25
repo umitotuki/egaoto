@@ -23,6 +23,7 @@ class Public::UsersController < ApplicationController
     @user = current_user
     @posts = @user.posts
     @favorite_posts = current_user.favorite_posts
+    @draft_posts = @posts.where(is_draft: true)
   end
 
   def update

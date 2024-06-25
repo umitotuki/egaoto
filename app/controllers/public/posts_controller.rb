@@ -19,7 +19,7 @@ class Public::PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.all
+    @posts = Post.all.where(is_draft: false)
     @genres = Genre.all
   end
 

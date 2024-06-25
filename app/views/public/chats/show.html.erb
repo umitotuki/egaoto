@@ -2,7 +2,7 @@
   <div class="row d-frex justify-content-center">
     <h3 id="room" class="pt-3"><%= @user.name %> さんとのチャット</h1>
   </div>
-  
+
   <% @chats.each do |chat| %>
     <div class="message">
       <% if chat.user_id == current_user.id %>
@@ -11,7 +11,7 @@
         </div>
         <p style="text-align: right; font-size: 10px;"><%= chat.created_at.strftime('%Y/%m/%d %H:%M') %>
           <% if chat.user == current_user %>
-            <%= link_to "削除", chat_path(chat), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-danger btn-sm" %>
+            <%= link_to "削除", chat_path(chat, params: { user_id: @user.id }), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-danger btn-sm" %>
           <% end %>
         </p>
       <% else %>
@@ -24,10 +24,11 @@
   <% end %>
 
   <div class="row pb-3 d-frex justify-content-center">
-    <%= form_with model: @chat, data: {remote: true} do |f| %>
+    <%= form_with model: @chat do |f| %>
       <%= f.text_field :message %>
       <%= f.submit "送信", class: "btn btn-primary btn-sm" %>
       <%= f.hidden_field :room_id %>
+      <%= hidden_field_tag :user_id, @user.id %>
     <% end %>
   </div>
 </div>
