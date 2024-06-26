@@ -21,9 +21,9 @@ class Public::UsersController < ApplicationController
 
   def mypage
     @user = current_user
-    @posts = @user.posts
+    @posts = @user.posts.where(is_draft: false)
     @favorite_posts = current_user.favorite_posts
-    @draft_posts = @posts.where(is_draft: true)
+    @draft_posts = @user.posts.where(is_draft: true)
   end
 
   def update
