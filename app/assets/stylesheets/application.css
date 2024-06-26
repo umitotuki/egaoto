@@ -63,21 +63,21 @@ footer {
 
 #tab-menu li {
   list-style-type: none;
-  width: 50%;
+  width: 33%;
 }
 
 #tab-menu li a {
-  color: #000;
+  color: #fff;
   text-decoration: none;
   display: block;
   padding: 15px;
   text-align: center;
-  background: #fff;
+  background: #F8C6BD;
 }
 
 #tab-menu .active {
-  background: #F8C6BD;
-  color: #FFF;
+  background: #fff;
+  color: #000;
 }
 
 #tab-contents {
@@ -86,8 +86,8 @@ footer {
 }
 
 #tab-contents .tab {
-  padding: 15px;
-  background: #F8C6BD;
+ 
+  background: #fff;
 }
 
 .chat-right {
