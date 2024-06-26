@@ -23,8 +23,22 @@
         <p>ジャンル:　　</p>
       <% end %>
     </div>
-    <div class="col">
+    <div class="col d-flex">
       <p><i class="fa-regular fa-comment mx-1"></i><%= @post.post_comments.count %></p>
+      
+      <% if @post.favorited_by?(current_user) %>
+        <p>
+          <%= link_to post_favorites_path(@post), method: :delete do %>
+            <p class="ml-3"><i class="fa-solid fa-heart mr-1" style="color: #d80e4a;"></i><%= @post.favorites.count %></p>
+          <% end %>
+        </p>
+      <% else %>
+        <p>
+          <%= link_to post_favorites_path(@post), method: :post do %>
+            <p class="ml-3"><i class="fa-regular fa-heart mr-1"></i><%= @post.favorites.count %></p>
+          <% end %>
+        </p>
+      <% end %>
     </div>
   </div>
   <div class="row mr-4 d-frex justify-content-end">
@@ -62,4 +76,5 @@
   <div class="row d-frex justify-content-end">
       <%= f.submit "コメントを送信する", class: "btn btn-primary mb-3 mr-3" %>
   </div>
-　　<% end %>
+    <% end %>
+</div>

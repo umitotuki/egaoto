@@ -1,10 +1,17 @@
 class Post < ApplicationRecord
-  validates :title, presence: true
-  validates :body, presence: true
-  has_one_attached :image
   belongs_to :user
   belongs_to :genre
   has_many :post_comments, dependent: :destroy
+  has_many :favorites, dependent: :destroy
+
+  validates :title, presence: true
+  validates :body, presence: true
+  has_one_attached :image
+
+  def favorited_by?(user)
+    user.present?
+    favorites.exists?(user_id: user.id)
+  end
 
   def get_image(width, height)
     unless image.attached?
@@ -17,5 +24,4 @@ class Post < ApplicationRecord
   def self.looks(search)
       @records = Post.where("title LIKE?","%#{search}%")
   end
-
 end

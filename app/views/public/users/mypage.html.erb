@@ -20,53 +20,201 @@
     <h6>自己紹介:</h6>
     <p><%= @user.introduction %></p>
   </div>
-  <!--ゲストユーザーではない場合に編集ボタンを表示-->
-  <% if @user.email != "guest@example.com" %>
   <div class="row mr-2 d-frex justify-content-end">
-    <%= link_to edit_user_path(@user.id) do %>
-      <i class="fa-solid fa-user-gear rounded p-2 custom-border"></i>
+    <p class="mr-2">フォロー数:<%= link_to @user.followings.count, user_followings_path(@user) %></p>
+    <p class="mr-3">フォロワー数:<%= link_to @user.followers.count, user_followers_path(@user) %></p>
+    <!--ゲストユーザーではない場合に編集ボタンを表示-->
+    <% if @user.email != "guest@example.com" %>
+      <%= link_to edit_user_path(@user.id) do %>
+        <i class="fa-solid fa-user-gear rounded p-2 custom-border"></i>
+      <% end %>
     <% end %>
   </div>
-  <% end %>
 
-  <div class="row d-frex justify-content-center">
-    <h5>投稿一覧</h5>
+  <ul id="tab-menu">
+    <li><a href="#tab1" class="active">投稿</a></li>
+    <li><a href="#tab2" class="">いいね</a></li>
+    <li><a href="#tab3" class="">下書き</a></li>
+  </ul>
+
+  <div id="tab-contents">
+    <div id="tab1" class="tab active">
+      <% if @posts.present? %>
+        <% @posts.each do |post| %>
+          <div class="card border-light shadow m-3">
+            <div class="row">
+              <div class="col-4 my-3">
+                <%= link_to user_path(post.user.id) do %>
+                  <%= image_tag post.user.get_image, class:"rounded-circle mx-auto d-block" %>
+                <% end %>
+              </div>
+              <div class="col-6 my-3">
+                <%= link_to post_path(post.id), style:"text-decoration: none;" do %>
+                  <h5 style="color: #000;"><%= truncate(post.title, length: 25) %></h5>
+                  <p style="color: #000;"><%= truncate(post.body, length: 75) %></p>
+                <% end %>
+              </div>
+            </div>
+            <div class="row mr-2 justify-content-end">
+              <% if post.genre.present? %>
+                <p>ジャンル:<%= post.genre.name %></p>
+              <% else %>
+                <p>ジャンル:　　</p>
+              <% end %>
+            </div>
+            <div class="row mr-3 pb-3 d-frex justify-content-end">
+              <!--コメント-->
+              <%= link_to post_path(post.id) do %>
+                <p class="mr-3"><i class="fa-regular fa-comment mx-1"></i><%= post.post_comments.count %></p>
+              <% end %>
+              <!--いいね-->
+              <% if post.favorited_by?(current_user) %>
+                <p>
+                  <%= link_to post_favorites_path(post), method: :delete do %>
+                    <p class="mr-3"><i class="fa-solid fa-heart mr-1" style="color: #d80e4a;"></i><%= post.favorites.count %></p>
+                  <% end %>
+                </p>
+              <% else %>
+                <p>
+                  <%= link_to post_favorites_path(post), method: :post do %>
+                    <p class="mr-3"><i class="fa-regular fa-heart mr-1"></i><%= post.favorites.count %></p>
+                  <% end %>
+                </p>
+              <% end %>
+              <!--編集と削除ボタン-->
+              <% if post.user == current_user %>
+                <%= link_to edit_post_path(post.id),class: "mr-3", style: "text-decoration: none;" do %>
+                  <i class="fa-solid fa-pen-to-square p-2 custom-border"></i>
+                <% end %>
+                <%= link_to post_path(post.id), method: :delete,style:"text-decoration: none;" do %>
+                  <i class="fa-solid fa-trash-can p-2 custom-border"></i>
+                <% end %>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+      <% else %>
+        <div class="row">
+          <h5 class="py-3 ml-5">投稿はありません</h5>
+        </div>
+      <% end %>
+    </div>
+    
+    <!--いいね一覧-->
+    <div id="tab2" class="tab">
+      <% if @favorite_posts.present? %>`
+        <div class="d-flex flex-column">
+          <% @favorite_posts.each do |post|  %>
+            <div class="card border-light shadow m-3">
+              <div class="row">
+                <div class="col-4 my-3 text-center">
+                  <%= image_tag post.user.get_image, class:"rounded-circle mx-auto d-block" %>
+                  <%= link_to post.user.name ,user_path(post.user), class:"my-3" ,style:"color: #000;" %>
+                </div>
+                <div class="col-7 my-3">
+                  <%= link_to post_path(post.id) do %>
+                    <h5 style="color: #000;"><%= truncate(post.title, length: 25) %></h5>
+                    <p style="color: #000;"><%= truncate(post.body, length: 75) %></p>
+                  <% end %>
+                </div>
+              </div>
+              <div class="row mr-4 justify-content-end">
+                <!--コメント-->
+                <%= link_to post_path(post.id) do %>
+                  <p class="mr-3"><i class="fa-regular fa-comment mx-1"></i><%= post.post_comments.count %></p>
+                <% end %>
+                <!--いいね-->
+                <% if post.favorited_by?(current_user) %>
+                 <p>
+                   <%= link_to post_favorites_path(post), method: :delete do %>
+                     <p class="mr-3"><i class="fa-solid fa-heart mr-1" style="color: #d80e4a;"></i><%= post.favorites.count %></p>
+                   <% end %>
+                 </p>
+                <% else %>
+                  <p>
+                    <%= link_to post_favorites_path(post), method: :post do %>
+                      <p class="mr-3"><i class="fa-regular fa-heart mr-1"></i><%= post.favorites.count %></p>
+                    <% end %>
+                  </p>
+                <% end %>
+      
+                <% if post.genre.present? %>
+                  <p>ジャンル:<%= post.genre.name %></p>
+                <% else %>
+                  <p>ジャンル:　　</p>
+                <% end %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      <% else %>
+        <div class="row">
+          <h5 class="py-3 ml-5">いいねした投稿はありません</h5>
+        </div>
+      <% end %>
+    </div>
+    <!--下書き投稿-->
+    <div id="tab3" class="tab">
+      <% if @draft_posts.present? %>
+        <% @draft_posts.each do |post| %>
+          <div class="card border-light shadow m-3">
+            <div class="row">
+              <div class="col-4 my-3">
+                <%= link_to user_path(post.user.id) do %>
+                  <%= image_tag post.user.get_image, class:"rounded-circle mx-auto d-block" %>
+                <% end %>
+              </div>
+              <div class="col-7 my-3">
+                <%= link_to post_path(post.id), style:"text-decoration: none;" do %>
+                  <h5 style="color: #000;"><%= truncate(post.title, length: 25) %></h5>
+                  <p style="color: #000;"><%= truncate(post.body, length: 75) %></p>
+                <% end %>
+              </div>
+            </div>
+            <div class="row mr-2 justify-content-end">
+              <% if post.genre.present? %>
+                <p>ジャンル:<%= post.genre.name %></p>
+              <% else %>
+                <p>ジャンル:　　</p>
+              <% end %>
+            </div>
+            <div class="row mr-3 pb-3 d-frex justify-content-end">
+              <!--コメント-->
+              <%= link_to post_path(post.id) do %>
+                <p class="mr-3"><i class="fa-regular fa-comment mx-1"></i><%= post.post_comments.count %></p>
+              <% end %>
+              <!--いいね-->
+              <% if post.favorited_by?(current_user) %>
+                <p>
+                  <%= link_to post_favorites_path(post), method: :delete do %>
+                    <p class="mr-3"><i class="fa-solid fa-heart mr-1" style="color: #d80e4a;"></i><%= post.favorites.count %></p>
+                  <% end %>
+                </p>
+              <% else %>
+                <p>
+                  <%= link_to post_favorites_path(post), method: :post do %>
+                    <p class="mr-3"><i class="fa-regular fa-heart mr-1"></i><%= post.favorites.count %></p>
+                  <% end %>
+                </p>
+              <% end %>
+              <!--編集と削除ボタン-->
+              <% if post.user == current_user %>
+                <%= link_to edit_post_path(post.id),class: "mr-3", style: "text-decoration: none;" do %>
+                  <i class="fa-solid fa-pen-to-square p-2 custom-border"></i>
+                <% end %>
+                <%= link_to post_path(post.id), method: :delete,style:"text-decoration: none;" do %>
+                  <i class="fa-solid fa-trash-can p-2 custom-border"></i>
+                <% end %>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+      <% else %>
+        <div class="row">
+          <h5 class="py-3 ml-5">下書きはありません</h5>
+        </div>
+      <% end %>
+    </div>
   </div>
-  <% @posts.each do |post| %>
-    <div class="row">
-      <div class="col-4 my-3">
-        <%= link_to user_path(post.user.id) do %>
-          <%= image_tag post.user.get_image, class:"rounded-circle mx-auto d-block" %>
-        <% end %>
-      </div>
-      <div class="col-7 my-3">
-        <%= link_to post_path(post.id), style:"text-decoration: none;" do %>
-          <h5 style="color: #000;"><%= truncate(post.title, length: 25) %></h5>
-          <p style="color: #000;"><%= truncate(post.body, length: 75) %></p>
-        <% end %>
-      </div>
-    </div>
-    <div class="row justify-content-end">
-      <div class="col-7">
-        <% if post.genre.present? %>
-          <p>ジャンル:<%= post.genre.name %></p>
-        <% else %>
-          <p>ジャンル:　　</p>
-        <% end %>
-      </div>
-    </div>
-    <div class="row mr-3 d-frex justify-content-end">
-      <%= link_to post_path(post.id) do %>
-        <p class="mr-4"><i class="fa-regular fa-comment mx-1"></i><%= post.post_comments.count %></p>
-      <% end %>
-      <% if post.user == current_user %>
-        <%= link_to edit_post_path(post.id),class: "mr-3", style: "text-decoration: none;" do %>
-         <i class="fa-solid fa-pen-to-square p-2 custom-border"></i>
-        <% end %>
-        <%= link_to post_path(post.id), method: :delete,style:"text-decoration: none;" do %>
-          <i class="fa-solid fa-trash-can p-2 custom-border"></i>
-        <% end %>
-      <% end %>
-    </div>
-  <% end %>
 </div>
+

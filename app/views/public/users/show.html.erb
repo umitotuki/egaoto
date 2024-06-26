@@ -21,6 +21,27 @@
     <p><%= @user.introduction %></p>
   </div>
   <div class="row mr-2 d-frex justify-content-end">
+    <p class="mr-2">フォロー数:<%= link_to @user.followings.count, user_followings_path(@user) %></p>
+    <p class="mr-3">フォロワー数:<%= link_to @user.followers.count, user_followers_path(@user) %></p>
+    <!--フォローボタン-->
+    <% if current_user != @user %>
+      <% if current_user.following?(@user) %>
+        <%= link_to user_relationships_path(@user), method: :delete do %>
+          <i class="fa-solid fa-user-minus rounded p-2 custom-border">フォロー解除</i>
+        <% end %>
+      <% else %>
+        <%= link_to user_relationships_path(@user), method: :post do %>
+          <i class="fa-solid fa-user-plus rounded p-2 custom-border">フォローする</i>
+        <% end %>
+      <% end %>
+    <% end %>
+    
+    <% if current_user != @user && current_user.following?(@user) && @user.following?(current_user) %>
+      <%= link_to chat_path(@user.id) do %>
+      <i class="fa-regular fa-envelope rounded p-2 custom-border ml-2"></i>
+      <% end %>
+    <% end %>
+  
     <% if @user.email != "guest@example.com" %>
       <% if @user == current_user %>
         <%= link_to edit_user_path(@user.id) do %>
@@ -31,43 +52,64 @@
   </div>
   
   <div class="row d-frex justify-content-center">
-    <h5>投稿一覧</h5>
+    <h5 class="px-4 py-2" style="background-color: #ddd; display: inline-block;">投稿一覧</h5>
   </div>
-  <% @posts.each do |post| %>
-    <div class="row">
-      <div class="col-4 my-3">
-        <%= link_to user_path(post.user.id) do %>
-          <%= image_tag post.user.get_image, class:"rounded-circle mx-auto d-block" %>
-        <% end %>
+  <% if @posts.present? %>
+    <% @posts.each do |post| %>
+      <div class="row">
+        <div class="col-4 my-3">
+          <%= link_to user_path(post.user.id) do %>
+            <%= image_tag post.user.get_image, class:"rounded-circle mx-auto d-block" %>
+          <% end %>
+        </div>
+        <div class="col-7 my-3">
+          <%= link_to post_path(post.id), style:"text-decoration: none;" do %>
+            <h5 style="color: #000;"><%= truncate(post.title, length: 25) %></h5>
+            <p style="color: #000;"><%= truncate(post.body, length: 75) %></p>
+          <% end %>
+        </div>
       </div>
-      <div class="col-7 my-3">
-        <%= link_to post_path(post.id), style:"text-decoration: none;" do %>
-          <h5 style="color: #000;"><%= truncate(post.title, length: 25) %></h5>
-          <p style="color: #000;"><%= truncate(post.body, length: 75) %></p>
-        <% end %>
+      <div class="row justify-content-end">
+        <div class="col-7">
+          <% if post.genre.present? %>
+            <p>ジャンル:<%= post.genre.name %></p>
+          <% else %>
+            <p>ジャンル:　　</p>
+          <% end %>  
+        </div>
       </div>
-    </div>
-    <div class="row justify-content-end">
-      <div class="col-7">
-        <% if post.genre.present? %>
-          <p>ジャンル:<%= post.genre.name %></p>
+      <div class="row mr-3 d-frex justify-content-end">
+        <%= link_to post_path(post.id) do %>
+          <p class="mr-3"><i class="fa-regular fa-comment mx-1"></i><%= post.post_comments.count %></p>
+        <% end %>
+        
+        <% if post.favorited_by?(current_user) %>
+          <p>
+            <%= link_to post_favorites_path(post), method: :delete do %>
+              <p class="mr-3"><i class="fa-solid fa-heart mr-1" style="color: #d80e4a;"></i><%= post.favorites.count %></p>
+            <% end %>
+          </p>
         <% else %>
-          <p>ジャンル:　　</p>
-        <% end %>  
+          <p>
+            <%= link_to post_favorites_path(post), method: :post do %>
+              <p class="mr-3"><i class="fa-regular fa-heart mr-1"></i><%= post.favorites.count %></p>
+            <% end %>
+          </p>
+        <% end %>
+        
+        <% if post.user == current_user %>
+          <%= link_to edit_post_path(post.id),class: "mr-3",style:"text-decoration: none;" do %>
+           <i class="fa-solid fa-pen-to-square p-2 custom-border"></i>
+          <% end %>
+          <%= link_to post_path(post.id), method: :delete,"data-confirm" => "本当に削除しますか？", style:"text-decoration: none;" do %>
+            <i class="fa-solid fa-trash-can p-2 custom-border"></i>
+          <% end %>
+        <% end %>
       </div>
-    </div>
-    <div class="row mr-3 d-frex justify-content-end">
-      <%= link_to post_path(post.id) do %>
-        <p class="mr-4"><i class="fa-regular fa-comment mx-1"></i><%= post.post_comments.count %></p>
-      <% end %>
-      <% if post.user == current_user %>
-        <%= link_to edit_post_path(post.id),class: "mr-3",style:"text-decoration: none;" do %>
-         <i class="fa-solid fa-pen-to-square p-2 custom-border"></i>
-        <% end %>
-        <%= link_to post_path(post.id), method: :delete,"data-confirm" => "本当に削除しますか？", style:"text-decoration: none;" do %>
-          <i class="fa-solid fa-trash-can p-2 custom-border"></i>
-        <% end %>
-      <% end %>
+    <% end %>
+  <% else %>
+    <div class="row d-frex justify-content-center">
+      <h5 class="py-3">投稿はありません</h5>
     </div>
   <% end %>
 </div>
