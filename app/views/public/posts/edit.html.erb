@@ -9,7 +9,7 @@
         <%= f.file_field :image, accept: "image/*", class:"ml-4 mb-3" %>
       </div>
       <div class="row mb-3 d-frex justify-content-center">
-        <%= f.select :genre_id, options_from_collection_for_select(Genre.all, :id, :name), include_blank: 'ジャンル選択' %>
+        <%= f.select :genre_id, options_from_collection_for_select(Genre.all, :id, :name, @post.genre_id), include_blank: 'ジャンル選択' %>
       </div>
       <div class="row d-frex justify-content-center">
         <%= f.radio_button :is_draft, :true %>
