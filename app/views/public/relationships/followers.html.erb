@@ -1,6 +1,6 @@
 <div class="col-12 col-xl-4 col-lg-6 col-md-8 col-sm-10 mx-auto" style="background-color: #FFFFFF;">
-  <div class="d-flex justify-content-center m-3">
-    <h3>フォロワー</h3>
+  <div class="d-flex justify-content-center mt-3">
+    <h3 class="pt-3">フォロワー</h3>
   </div>
   <% if @users.exists? %>
     <table class="table">
@@ -20,6 +20,8 @@
       </tbody>
     </table>
   <% else %>
-    <p>ユーザーはいません</p>
+    <div class="d-flex justify-content-center mt-3" style="height: 500px;">
+      <h5 class="my-3">ユーザーはいません</h5>
+    </div>
   <% end %>
 </div>
