@@ -7,7 +7,7 @@
     <div class="row justify-content-center">
       <!--検索結果が空っぽだったら、、、？-->
       <% if @records.empty? %>
-        <div class="row">
+        <div class="row justify-content-center" style="height: 500px;">
           <h2 class="mt-3 mb-5 text-danger">検索結果はありません。</h2>
         </div>
       <% else %>
@@ -35,7 +35,7 @@
       <h3 class="my-3">投稿の検索結果 "<%= @search %>"</h3>
     </div>
       <% if @records.empty? %>
-        <div class="row">
+        <div class="row justify-content-center" style="height: 500px;">
           <h2 class="mt-3 mb-5 text-danger">検索結果はありません。</h2>
         </div>
       <% else %>
