@@ -1,5 +1,4 @@
 class Public::ChatsController < ApplicationController
-  before_action :block_non_related_users, only: [:show]
 
   def show
     @user = User.find(params[:id])
@@ -43,19 +42,12 @@ class Public::ChatsController < ApplicationController
   def destroy
     @chat = current_user.chats.find(params[:id])
     @chat.destroy
-    redirect_to chat_path(@chat)
+    redirect_back(fallback_location: chat_path(@chat))
   end
 
   private
 
   def chat_params
     params.require(:chat).permit(:message, :room_id)
-  end
-
-  def block_non_related_users
-    user = User.find(params[:id])
-    unless current_user.following?(user) && user.following?(current_user)
-      redirect_to posts_path
-    end
   end
 end

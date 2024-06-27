@@ -44,9 +44,7 @@
           <div class="card border-light shadow m-3">
             <div class="row">
               <div class="col-4 my-3">
-                <%= link_to user_path(post.user.id) do %>
-                  <%= image_tag post.user.get_image, class:"rounded-circle mx-auto d-block" %>
-                <% end %>
+                <%= image_tag post.user.get_image, class:"rounded-circle mx-auto d-block" %>
               </div>
               <div class="col-6 my-3">
                 <%= link_to post_path(post.id), style:"text-decoration: none;" do %>

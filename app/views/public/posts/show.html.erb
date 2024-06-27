@@ -17,11 +17,7 @@
   <div class="row ml-4">
     <div class="col">
       <%= @post.created_at.strftime('%Y/%m/%d %H:%M') %>
-      <% if @post.genre.present? %>
         <p>ジャンル:<%= @post.genre.name %></p>
-      <% else %>
-        <p>ジャンル:　　</p>
-      <% end %>
     </div>
     <div class="col d-flex">
       <p><i class="fa-regular fa-comment mx-1"></i><%= @post.post_comments.count %></p>
@@ -71,7 +67,7 @@
   <% end %>
     <%= form_with model: [@post, @post_comment],url: post_post_comments_path(@post.id) do |f| %>
   <div class="row d-frex justify-content-center">
-      <%= f.text_area :comment, rows: '3', placeholder: "コメントをここに", style: "width: 400px" %>
+      <%= f.text_area :comment, rows: "3", placeholder: "コメントをここに", style: "width: 400px" %>
   </div>
   <div class="row d-frex justify-content-end">
       <%= f.submit "コメントを送信する", class: "btn btn-primary mb-3 mr-3" %>
