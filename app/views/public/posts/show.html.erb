@@ -17,11 +17,7 @@
   <div class="row ml-4">
     <div class="col">
       <%= @post.created_at.strftime('%Y/%m/%d %H:%M') %>
-      <% if @post.genre.present? %>
         <p>ジャンル:<%= @post.genre.name %></p>
-      <% else %>
-        <p>ジャンル:　　</p>
-      <% end %>
     </div>
     <div class="col d-flex">
       <p><i class="fa-regular fa-comment mx-1"></i><%= @post.post_comments.count %></p>
