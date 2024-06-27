@@ -9,9 +9,9 @@
 また、忙しく支援情報を知らないで受けていないという人も多くいます。社会から孤立し困っているひとり親家庭を助け、笑顔溢れる家庭にしたいと考えこのテーマにしました。
 ​
 ### ターゲットユーザ
-* 似た境遇のひとり親家庭と繋がり交流をしたい人  
-* 悩みや相談をしに行く場所がない人  
-* ひとり親家庭を支援したい人（フードバンクや子ども食堂など）  
+* 似た境遇のひとり親家庭と繋がり交流をしたい人
+* 悩みや相談をしに行く場所がない人
+* ひとり親家庭を支援したい人（フードバンクや子ども食堂など）
 ​
 ### 主な利用シーン
 * 悩みや相談を聞いてもらいたい時
@@ -23,6 +23,9 @@
 
 UIflow/ER図
 https://drive.google.com/file/d/1jmMtsXvA1diNejBarBLfxhqloeSiYdw3/view?usp=sharing
+
+テーブル定義書
+https://docs.google.com/spreadsheets/d/1lS089XTCeeMOSVDJdAV12M7bl6m0lH81TXss8pXuApU/edit?usp=sharing
 
 
 ​
