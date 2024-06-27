@@ -41,7 +41,7 @@ class Public::ChatsController < ApplicationController
   def destroy
     @chat = current_user.chats.find(params[:id])
     @chat.destroy
-    redirect_to chat_path(params[:user_id])
+    redirect_to chat_path(@chat)
   end
 
   private

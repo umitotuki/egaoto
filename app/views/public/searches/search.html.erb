@@ -73,12 +73,7 @@
                     <% end %>
                   </p>
                 <% end %>
-                
-                <% if post.genre.present? %>
-                  <p>ジャンル:<%= post.genre.name %></p>
-                <% else %>
-                  <p>ジャンル:　　</p>
-                <% end %>
+                <p>ジャンル:<%= post.genre.name %></p>
               </div>
             </div>
           <% end %>
