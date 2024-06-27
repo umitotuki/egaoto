@@ -18,11 +18,12 @@ class Public::ChatsController < ApplicationController
   end
 
   def create
+    @user = current_user
     @chat = current_user.chats.new(chat_params)
     if @chat.save
       redirect_to chat_path(params[:user_id])
     else
-      @user = User.find(params[:id])
+      @user = current_user
       rooms = current_user.user_rooms.pluck(:room_id)
       user_rooms = UserRoom.find_by(user_id: @user.id, room_id: rooms)
       unless user_rooms.nil?
@@ -34,6 +35,7 @@ class Public::ChatsController < ApplicationController
         UserRoom.create(user_id: @user.id, room_id: @room.id)
       end
       @chats = @room.chats
+      flash.now[:alert] = "メッセージを入れてください。"
       render :show
     end
   end
