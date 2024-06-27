@@ -21,6 +21,8 @@
     <p><%= @user.introduction %></p>
   </div>
   <div class="row mr-2 d-frex justify-content-end">
+    <p class="mr-2">フォロー数:<%= @user.followings.count %></p>
+    <p class="mr-3">フォロワー数:<%= @user.followers.count %></p>
     <%= link_to "退会", admin_user_path, method: :delete, "data-confirm" => "本当に退会させますか？", class: "btn btn-danger" %>
   </div>
 
@@ -43,11 +45,7 @@
     </div>
     <div class="row justify-content-end">
       <div class="col-7">
-        <% if post.genre.present? %>
-          <p>ジャンル:<%= post.genre.name %></p>
-        <% else %>
-          <p>ジャンル:　　</p>
-        <% end %>
+        <p>ジャンル:<%= post.genre.name %></p>
       </div>
     </div>
     <div class="row mr-3 pb-2 d-frex justify-content-end">
