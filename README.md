@@ -20,7 +20,11 @@
 * 支援情報を提供したい時
 
 ## 設計書
-後ほど作成予定です
+
+UIflow/ER図
+https://drive.google.com/file/d/1jmMtsXvA1diNejBarBLfxhqloeSiYdw3/view?usp=sharing
+
+
 ​
 ## 開発環境
 - OS：Linux(CentOS)
