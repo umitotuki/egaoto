@@ -24,7 +24,7 @@
 UIflow/ER図
 https://drive.google.com/file/d/1jmMtsXvA1diNejBarBLfxhqloeSiYdw3/view?usp=sharing
 
-テーブル定義書
+詳細設計書
 https://docs.google.com/spreadsheets/d/1lS089XTCeeMOSVDJdAV12M7bl6m0lH81TXss8pXuApU/edit?usp=sharing
 
 
